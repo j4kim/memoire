@@ -48,9 +48,17 @@ php artisan migrate --seed
 
 ## Run
 
+Create an admin user:
+
+```
+php artisan make:filament-user
+```
+
 ```
 composer run dev
 ```
+
+Then open http://localhost:8000/admin/login
 
 ## Data model
 
