@@ -4,6 +4,7 @@ namespace App\Jeangui;
 
 use App\Jeangui\Models\Fond;
 use App\Jeangui\Models\Lieu;
+use App\Jeangui\Models\Lot;
 use App\Jeangui\Models\Motmatiere;
 use App\Jeangui\Models\Personne;
 
@@ -15,5 +16,6 @@ class Importer
         Motmatiere::import();
         Personne::import();
         Fond::import();
+        Lot::import();
     }
 }
