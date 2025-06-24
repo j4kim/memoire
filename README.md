@@ -54,4 +54,4 @@ composer run dev
 
 ## Data model
 
-- https://excalidraw.com/#json=urpQ_BWhiwakpiy0XiPVJ,tPlqYTPWdaVkwOS-edNZSw
+- https://excalidraw.com/#json=jEchcqJC6gQCgpv8KwJ6R,3zmDpjz_lEzJViPD3KZAPw
