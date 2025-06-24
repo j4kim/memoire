@@ -28,7 +28,7 @@ class JeanguiImport extends Command
     public function handle()
     {
         if ($this->option('migrate')) {
-            Artisan::call('migrate:fresh');
+            Artisan::call('migrate:refresh --step 12');
         }
         Importer::run();
     }
