@@ -14,6 +14,7 @@ class Lieu extends Model
     {
         foreach (self::orderBy('id')->get() as $lieu) {
             Location::create([
+                'id' => $lieu->id,
                 'name' => $lieu->nom,
             ]);
         }
