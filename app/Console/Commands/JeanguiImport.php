@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Jeangui\Importer;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class JeanguiImport extends Command
 {
@@ -12,7 +13,7 @@ class JeanguiImport extends Command
      *
      * @var string
      */
-    protected $signature = 'app:jeangui-import';
+    protected $signature = 'app:jeangui-import {--migrate : Reset database first}';
 
     /**
      * The console command description.
@@ -26,6 +27,9 @@ class JeanguiImport extends Command
      */
     public function handle()
     {
+        if ($this->option('migrate')) {
+            Artisan::call('migrate:fresh');
+        }
         Importer::run();
     }
 }
