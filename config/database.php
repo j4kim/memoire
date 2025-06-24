@@ -67,7 +67,7 @@ return [
             'url' => env('DB_JEANGUI_URL'),
             'host' => env('DB_JEANGUI_HOST', '127.0.0.1'),
             'port' => env('DB_JEANGUI_PORT', '3306'),
-            'database' => 'jeangui',
+            'database' => env('DB_JEANGUI_DATABASE', 'jeangui'),
             'username' => env('DB_JEANGUI_USERNAME', 'root'),
             'password' => env('DB_JEANGUI_PASSWORD', ''),
             'unix_socket' => env('DB_JEANGUI_SOCKET', ''),
