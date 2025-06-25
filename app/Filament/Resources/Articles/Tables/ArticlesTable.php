@@ -46,8 +46,7 @@ class ArticlesTable
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('date')
-                    ->date()
-                    ->sortable()
+                    ->date("d.m.Y")
                     ->sortable(),
                 TextColumn::make('collation')
                     ->numeric()

@@ -11,6 +11,7 @@ class Article extends Model
     protected function casts(): array
     {
         return [
+            'date' => 'date',
             'dimensions' => 'array',
             'techniques' => 'array',
             'geography' => 'array',

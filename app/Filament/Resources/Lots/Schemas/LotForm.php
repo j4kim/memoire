@@ -15,20 +15,24 @@ class LotForm
         return $schema
             ->components([
                 Select::make('fund_id')
+                    ->label("Fond")
                     ->relationship('fund', 'name'),
                 Select::make('location_id')
+                    ->label("Localisation")
                     ->relationship('location', 'name'),
                 TextInput::make('name')
+                    ->label('Nom')
                     ->required(),
                 TextInput::make('ref')
+                    ->label('Cote')
                     ->required(),
                 Textarea::make('description')
                     ->columnSpanFull(),
-                TextInput::make('status'),
                 DatePicker::make('date'),
                 TextInput::make('price')
+                    ->label('Prix')
                     ->numeric()
-                    ->prefix('$'),
+                    ->prefix('CHF'),
             ]);
     }
 }

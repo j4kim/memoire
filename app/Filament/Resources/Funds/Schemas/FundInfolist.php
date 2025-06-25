@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Funds\Schemas;
 
+use App\Models\Fund;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -11,21 +12,22 @@ class FundInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                TextEntry::make('description'),
                 TextEntry::make('location.name')
+                    ->label('Localisation')
                     ->numeric(),
-                TextEntry::make('name'),
-                TextEntry::make('ref'),
-                TextEntry::make('status'),
                 TextEntry::make('creation_date')
-                    ->date(),
+                    ->label("Date de création")
+                    ->isoDate('LL'),
                 TextEntry::make('year_from')
-                    ->numeric(),
-                TextEntry::make('year_to')
-                    ->numeric(),
+                    ->label("Années")
+                    ->formatStateUsing(fn (Fund $record) => "de $record->year_from à $record->year_to"),
+                TextEntry::make('created_at')
+                    ->label("Entré le")
+                    ->isoDate('LLL'),
+                TextEntry::make('updated_at')
+                    ->label("Modifié le")
+                    ->isoDate('LLL'),
             ]);
     }
 }
