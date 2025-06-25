@@ -24,30 +24,27 @@ class LotsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('fund.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('location.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('name')
-                    ->searchable(),
+                    ->label('Fond')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('ref')
-                    ->searchable(),
-                TextColumn::make('status')
+                    ->label('Cote')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
+                TextColumn::make('name')
+                    ->label('Nom')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('date')
                     ->date()
-                    ->sortable(),
-                TextColumn::make('price')
-                    ->money()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

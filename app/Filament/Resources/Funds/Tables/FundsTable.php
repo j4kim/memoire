@@ -23,31 +23,19 @@ class FundsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('location.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('name')
-                    ->searchable(),
                 TextColumn::make('ref')
+                    ->label('Cote')
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('status')
+                TextColumn::make('name')
+                    ->label('Nom')
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('creation_date')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('year_from')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('year_to')
-                    ->numeric()
-                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
