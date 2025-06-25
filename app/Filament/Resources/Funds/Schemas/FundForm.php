@@ -14,19 +14,23 @@ class FundForm
     {
         return $schema
             ->components([
-                Select::make('location_id')
-                    ->relationship('location', 'name'),
                 TextInput::make('name')
+                    ->label('Nom')
                     ->required(),
                 TextInput::make('ref')
+                    ->label("Cote")
                     ->required(),
-                TextInput::make('status'),
-                Textarea::make('description')
-                    ->columnSpanFull(),
-                DatePicker::make('creation_date'),
+                Select::make('location_id')
+                    ->label('Localisation')
+                    ->relationship('location', 'name'),
+                Textarea::make('description'),
+                DatePicker::make('creation_date')
+                    ->label("Date de création"),
                 TextInput::make('year_from')
+                    ->label("Années, de")
                     ->numeric(),
                 TextInput::make('year_to')
+                    ->label("Années, à")
                     ->numeric(),
             ]);
     }
