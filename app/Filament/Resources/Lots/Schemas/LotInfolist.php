@@ -11,21 +11,23 @@ class LotInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                TextEntry::make('description'),
                 TextEntry::make('fund.name')
+                    ->label("Fond")
                     ->numeric(),
                 TextEntry::make('location.name')
-                    ->numeric(),
-                TextEntry::make('name'),
-                TextEntry::make('ref'),
-                TextEntry::make('status'),
+                    ->label("Localisation"),
                 TextEntry::make('date')
-                    ->date(),
+                    ->isoDate("LL"),
                 TextEntry::make('price')
-                    ->money(),
+                    ->label('Prix')
+                    ->money('CHF'),
+                TextEntry::make('created_at')
+                    ->label("Entré le")
+                    ->isoDate('LLL'),
+                TextEntry::make('updated_at')
+                    ->label("Modifié le")
+                    ->isoDate('LLL'),
             ]);
     }
 }
