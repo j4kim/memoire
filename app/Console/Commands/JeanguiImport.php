@@ -26,8 +26,12 @@ class JeanguiImport extends Command
      */
     public function handle()
     {
+        $this->comment("Start jeangui import");
+    
         if ($this->option('migrate')) {
-            Artisan::call('migrate:refresh --step 12');
+            $this->comment("Run migrate:refresh --step 12");
+            $this->call('migrate:refresh', ['--step' => 12]);
+            $this->info("Database refreshed");
         }
         
         $models = [
