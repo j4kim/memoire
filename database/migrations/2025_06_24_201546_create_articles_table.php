@@ -31,9 +31,9 @@ return new class extends Migration
             $table->string('subtitle')->nullable();
             $table->smallInteger('year_from')->nullable();
             $table->smallInteger('year_to')->nullable();
-            $table->smallInteger('collation')->nullable();
-            $table->smallInteger('state')->nullable();
-            $table->smallInteger('language')->nullable();
+            $table->string('collation')->nullable();
+            $table->string('state')->nullable();
+            $table->string('language')->nullable();
             $table->json('legacy')->nullable();
         });
     }
