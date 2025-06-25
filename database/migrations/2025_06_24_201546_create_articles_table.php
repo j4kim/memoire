@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('fund_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('lot_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('location_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('keyword_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title');
             $table->string('ref')->unique();
