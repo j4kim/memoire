@@ -6,6 +6,7 @@ use App\Filament\Resources\Lots\Pages\CreateLot;
 use App\Filament\Resources\Lots\Pages\EditLot;
 use App\Filament\Resources\Lots\Pages\ListLots;
 use App\Filament\Resources\Lots\Pages\ViewLot;
+use App\Filament\Resources\Lots\RelationManagers\ArticlesRelationManager;
 use App\Filament\Resources\Lots\Schemas\LotForm;
 use App\Filament\Resources\Lots\Schemas\LotInfolist;
 use App\Filament\Resources\Lots\Tables\LotsTable;
@@ -47,7 +48,7 @@ class LotResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ArticlesRelationManager::class,
         ];
     }
 
