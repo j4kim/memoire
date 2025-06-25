@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Jeangui\Importer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
@@ -30,6 +29,20 @@ class JeanguiImport extends Command
         if ($this->option('migrate')) {
             Artisan::call('migrate:refresh --step 12');
         }
-        Importer::run();
+        
+        $models = [
+            \App\Jeangui\Models\Lieu::class,
+            \App\Jeangui\Models\Motmatiere::class,
+            \App\Jeangui\Models\Personne::class,
+            \App\Jeangui\Models\Fond::class,
+            \App\Jeangui\Models\Lot::class,
+            \App\Jeangui\Models\Document::class,
+        ];
+
+        foreach ($models as $model) {
+            $this->comment("Start import for $model");
+            $model::import();
+            $this->info("$model imported");
+        }
     }
 }
