@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Model
 {
+    protected function casts(): array
+    {
+        return [
+            'dimensions' => 'array',
+            'techniques' => 'array',
+            'geography' => 'array',
+            'legacy' => 'array',
+        ];
+    }
+
     public function lot(): BelongsTo
     {
         return $this->belongsTo(Lot::class);
