@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Funds\RelationManagers;
 
 use App\Filament\Resources\Lots\LotResource;
 use Filament\Actions\CreateAction;
+use Filament\Actions\ViewAction;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 
@@ -18,6 +19,9 @@ class LotsRelationManager extends RelationManager
         return $table
             ->headerActions([
                 CreateAction::make(),
+            ])
+            ->recordActions([
+                ViewAction::make(),
             ]);
     }
 }
