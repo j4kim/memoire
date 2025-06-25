@@ -16,7 +16,7 @@ class LotInfolist
                 TextEntry::make('description'),
                 TextEntry::make('fund.name')
                     ->label("Fond")
-                    ->url(fn (Lot $lot): string => FundResource::getUrl('view', ['record' => $lot])),
+                    ->url(fn (Lot $lot): string => FundResource::getUrl('view', ['record' => $lot->fund])),
                 TextEntry::make('location.name')
                     ->label("Localisation"),
                 TextEntry::make('date')
