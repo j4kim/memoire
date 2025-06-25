@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('ref')->unique();
             $table->string('status')->nullable();
             $table->text('description')->nullable();
-            $table->smallInteger('year')->nullable();
+            $table->date('date')->nullable();
             $table->json('dimensions')->nullable();
             $table->json('techniques')->nullable();
             $table->text('inscriptions')->nullable();
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->smallInteger('collation')->nullable();
             $table->smallInteger('state')->nullable();
             $table->smallInteger('language')->nullable();
+            $table->json('legacy')->nullable();
         });
     }
 
