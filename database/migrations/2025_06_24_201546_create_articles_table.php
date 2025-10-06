@@ -17,13 +17,12 @@ return new class extends Migration
             $table->foreignId('fund_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('lot_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('location_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('keyword_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title');
             $table->string('ref')->unique();
             $table->string('status')->nullable();
             $table->text('description')->nullable();
-            $table->smallInteger('year')->nullable();
+            $table->date('date')->nullable();
             $table->json('dimensions')->nullable();
             $table->json('techniques')->nullable();
             $table->text('inscriptions')->nullable();
@@ -32,9 +31,10 @@ return new class extends Migration
             $table->string('subtitle')->nullable();
             $table->smallInteger('year_from')->nullable();
             $table->smallInteger('year_to')->nullable();
-            $table->smallInteger('collation')->nullable();
-            $table->smallInteger('state')->nullable();
-            $table->smallInteger('language')->nullable();
+            $table->string('collation')->nullable();
+            $table->string('state')->nullable();
+            $table->string('language')->nullable();
+            $table->json('legacy')->nullable();
         });
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Lots\Schemas;
 
+use App\Filament\Resources\Funds\FundResource;
+use App\Models\Lot;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -11,21 +13,23 @@ class LotInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                TextEntry::make('description'),
                 TextEntry::make('fund.name')
-                    ->numeric(),
+                    ->label("Fond")
+                    ->url(fn (Lot $lot): string => FundResource::getUrl('view', ['record' => $lot->fund])),
                 TextEntry::make('location.name')
-                    ->numeric(),
-                TextEntry::make('name'),
-                TextEntry::make('ref'),
-                TextEntry::make('status'),
+                    ->label("Localisation"),
                 TextEntry::make('date')
-                    ->date(),
+                    ->isoDate("LL"),
                 TextEntry::make('price')
-                    ->money(),
+                    ->label('Prix')
+                    ->money('CHF'),
+                TextEntry::make('created_at')
+                    ->label("Entré le")
+                    ->isoDate('LLL'),
+                TextEntry::make('updated_at')
+                    ->label("Modifié le")
+                    ->isoDate('LLL'),
             ]);
     }
 }

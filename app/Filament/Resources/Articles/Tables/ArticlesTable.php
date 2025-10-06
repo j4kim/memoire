@@ -24,46 +24,44 @@ class ArticlesTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('fund.name')
-                    ->numeric()
-                    ->sortable(),
+                    ->label('Fond')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('lot.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('location.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('keyword_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('title')
-                    ->searchable(),
+                    ->label('Lot')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('ref')
+                    ->label('Cote')
+                    ->sortable()
+                    ->toggleable()
                     ->searchable(),
-                TextColumn::make('status')
+                TextColumn::make('title')
+                    ->label('Titre')
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('year')
+                TextColumn::make('category.name')
+                    ->label('Catégorie')
                     ->numeric()
-                    ->sortable(),
-                TextColumn::make('subtitle')
-                    ->searchable(),
-                TextColumn::make('year_from')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('year_to')
-                    ->numeric()
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('date')
+                    ->date("d.m.Y")
                     ->sortable(),
                 TextColumn::make('collation')
                     ->numeric()
+                    ->toggleable()
                     ->sortable(),
                 TextColumn::make('state')
+                    ->label('État')
                     ->numeric()
+                    ->toggleable()
                     ->sortable(),
                 TextColumn::make('language')
+                    ->label('Langue')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
             ])
             ->filters([
                 //
