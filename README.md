@@ -23,10 +23,11 @@ cp .env.example .env
 ```
 
 Create database:
-- using mysql: `create database memoire;`
-- using sqlite:
-  - `touch database/database.sqlite`
-  - set `DB_CONNECTION=sqlite` in `.env`
+
+-   using mysql: `create database memoire;`
+-   using sqlite:
+    -   `touch database/database.sqlite`
+    -   set `DB_CONNECTION=sqlite` in `.env`
 
 Generate app key:
 
@@ -58,8 +59,8 @@ php artisan make:filament-user
 composer run dev
 ```
 
-Then open http://localhost:8000/admin/login
+Then open http://localhost:8000
 
 ## Data model
 
-- https://excalidraw.com/#json=jEchcqJC6gQCgpv8KwJ6R,3zmDpjz_lEzJViPD3KZAPw
+-   https://excalidraw.com/#json=jEchcqJC6gQCgpv8KwJ6R,3zmDpjz_lEzJViPD3KZAPw
