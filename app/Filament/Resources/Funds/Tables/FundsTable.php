@@ -31,12 +31,15 @@ class FundsTable
                     ->label('Nom')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('lots_count')
+                    ->label("Lots")
+                    ->counts('lots')
+                    ->toggleable(),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

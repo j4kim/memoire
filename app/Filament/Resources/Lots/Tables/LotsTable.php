@@ -40,12 +40,15 @@ class LotsTable
                     ->date()
                     ->sortable()
                     ->toggleable(),
+                TextColumn::make('articles_count')
+                    ->label("Articles")
+                    ->counts('articles')
+                    ->toggleable(),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
