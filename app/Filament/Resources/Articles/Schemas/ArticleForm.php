@@ -35,7 +35,7 @@ class ArticleForm
                 Select::make('category_id')
                     ->label("Catégorie")
                     ->relationship('category', 'name'),
-                DatePicker::make('year')
+                DatePicker::make('date')
                     ->label("Date (précise)"),
                 TextInput::make('year_from')
                     ->label("Année (approx) de")
