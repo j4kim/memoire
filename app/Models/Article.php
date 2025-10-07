@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Filament\Resources\Funds\FundResource;
+use App\Filament\Resources\Lots\LotResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -52,5 +54,21 @@ class Article extends Model
     public function attachments(): BelongsToMany
     {
         return $this->belongsToMany(Attachment::class);
+    }
+
+    public function lotUrl(): ?string
+    {
+        if (!$this->lot) {
+            return null;
+        }
+        return LotResource::getUrl('view', ['record' => $this->lot]);
+    }
+
+    public function fundUrl(): ?string
+    {
+        if (!$this->fund) {
+            return null;
+        }
+        return FundResource::getUrl('view', ['record' => $this->fund]);
     }
 }

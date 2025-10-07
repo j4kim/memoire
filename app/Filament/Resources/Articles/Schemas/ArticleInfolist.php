@@ -20,10 +20,10 @@ class ArticleInfolist
                     ->label("Titre alternatif"),
                 TextEntry::make('fund.name')
                     ->label("Fond")
-                    ->url(fn (Article $article): string => FundResource::getUrl('view', ['record' => $article->fund])),
+                    ->url(fn(Article $article) => $article->fundUrl()),
                 TextEntry::make('lot.name')
                     ->label("Lot")
-                    ->url(fn (Article $article): string => LotResource::getUrl('view', ['record' => $article->lot])),
+                    ->url(fn(Article $article) => $article->lotUrl()),
                 TextEntry::make('location.name')
                     ->label("Localisation"),
                 TextEntry::make('category.name')
