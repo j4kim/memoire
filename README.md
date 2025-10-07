@@ -63,4 +63,4 @@ Then open http://localhost:8000
 
 ## Data model
 
--   https://excalidraw.com/#json=jEchcqJC6gQCgpv8KwJ6R,3zmDpjz_lEzJViPD3KZAPw
+-   https://excalidraw.com/#json=9Dop4j1oE3iQQjnp99k-6,PVL90zyB-cMwmLrgz8Y5fw
