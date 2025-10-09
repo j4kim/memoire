@@ -38,6 +38,8 @@ class ArticleInfolist
                 ])->columns(2)->collapsible()->persistCollapsed(),
 
                 Section::make('Classification')->schema([
+                    TextEntry::make('ref')->label("Cote")->columnSpan(2),
+                    TextEntry::make('title')->label("Titre")->columnSpan(2),
                     TextEntry::make('description')->columnSpan(2),
                     TextEntry::make('subtitle')->label("Titre alternatif")->columnSpan(2),
                     TextEntry::make('location.name')->label("Localisation"),
