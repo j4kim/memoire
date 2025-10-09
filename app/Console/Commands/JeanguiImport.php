@@ -42,6 +42,7 @@ class JeanguiImport extends Command
             \App\Jeangui\Models\Lot::class,
             \App\Jeangui\CategoryImporter::class,
             \App\Jeangui\Models\Document::class,
+            \App\Jeangui\ArticleLocationImporter::class,
         ];
 
         foreach ($models as $model) {
