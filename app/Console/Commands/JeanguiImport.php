@@ -19,7 +19,7 @@ class JeanguiImport extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Import data from Jeangui database';
 
     /**
      * Execute the console command.
@@ -27,13 +27,13 @@ class JeanguiImport extends Command
     public function handle()
     {
         $this->comment("Start jeangui import");
-    
+
         if ($this->option('migrate')) {
             $this->comment("Run migrate:refresh --step 12");
             $this->call('migrate:refresh', ['--step' => 12]);
             $this->info("Database refreshed");
         }
-        
+
         $models = [
             \App\Jeangui\Models\Lieu::class,
             \App\Jeangui\Models\Motmatiere::class,
