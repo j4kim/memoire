@@ -63,9 +63,14 @@ class Article extends Model
         return Attribute::make(
             get: function () {
                 if ($this->date) return $this->date->isoFormat("LL");
-                if ($this->year_from || $this->year_to) {
-                    return "~$this->year_from-$this->year_to";
+                $years = collect([$this->year_from, $this->year_to])->filter()->unique();
+                if ($years->isEmpty()) {
+                    return null;
                 }
+                if ($years->containsOneItem()) {
+                    return "~" . $years->first();
+                }
+                return "~" . $years->join("-");
             }
         );
     }
