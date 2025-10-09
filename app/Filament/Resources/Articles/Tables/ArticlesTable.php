@@ -49,9 +49,8 @@ class ArticlesTable
                     ->numeric()
                     ->sortable()
                     ->toggleable(),
-                TextColumn::make('date')
-                    ->date("d.m.Y")
-                    ->sortable(),
+                TextColumn::make('date_or_year')
+                    ->label("Date"),
                 TextColumn::make('collation')
                     ->numeric()
                     ->toggleable()

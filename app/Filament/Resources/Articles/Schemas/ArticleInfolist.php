@@ -42,12 +42,7 @@ class ArticleInfolist
                     TextEntry::make('subtitle')->label("Titre alternatif")->columnSpan(2),
                     TextEntry::make('location.name')->label("Localisation"),
                     TextEntry::make('category.name')->label("Catégorie"),
-                    TextEntry::make('date')
-                        ->label("Date")
-                        ->state(function (Article $record) {
-                            if ($record->date) return $record->date->isoFormat("LL");
-                            return "~$record->year_from-$record->year_to";
-                        }),
+                    TextEntry::make('date_or_year')->label("Date"),
                     TextEntry::make('collation')->numeric(),
                     TextEntry::make('state')->label('État')->numeric(),
                     TextEntry::make('language')->label("Langues"),

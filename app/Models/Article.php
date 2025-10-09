@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Filament\Resources\Lots\LotResource;
 use App\Models\Traits\BelongsToFund;
 use App\Models\Traits\BelongsToLocation;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -55,5 +56,17 @@ class Article extends Model
             return null;
         }
         return LotResource::getUrl('view', ['record' => $this->lot]);
+    }
+
+    protected function dateOrYear(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                if ($this->date) return $this->date->isoFormat("LL");
+                if ($this->year_from || $this->year_to) {
+                    return "~$this->year_from-$this->year_to";
+                }
+            }
+        );
     }
 }
