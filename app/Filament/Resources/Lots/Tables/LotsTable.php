@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\Lots\Tables;
 
+use App\Filament\Resources\Funds\RelationManagers\LotsRelationManager;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Livewire\Component;
 
 class LotsTable
 {
@@ -30,7 +32,10 @@ class LotsTable
                 TextColumn::make('fund.name')
                     ->label('Fond')
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable()
+                    ->hidden(function (Component $livewire) {
+                        return $livewire instanceof LotsRelationManager;
+                    }),
                 TextColumn::make('ref')
                     ->label('Cote')
                     ->sortable()

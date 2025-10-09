@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\Articles\Tables;
 
+use App\Filament\Resources\Lots\RelationManagers\ArticlesRelationManager;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Livewire\Component;
 
 class ArticlesTable
 {
@@ -30,11 +30,17 @@ class ArticlesTable
                 TextColumn::make('fund.name')
                     ->label('Fond')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->hidden(function (Component $livewire) {
+                        return $livewire instanceof ArticlesRelationManager;
+                    }),
                 TextColumn::make('lot.name')
                     ->label('Lot')
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable()
+                    ->hidden(function (Component $livewire) {
+                        return $livewire instanceof ArticlesRelationManager;
+                    }),
                 TextColumn::make('ref')
                     ->label('Cote')
                     ->sortable()
