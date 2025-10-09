@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Lots\Schemas;
 
+use App\Models\Fund;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -16,10 +17,15 @@ class LotForm
             ->components([
                 Select::make('fund_id')
                     ->label("Fond")
-                    ->relationship('fund', 'name'),
+                    ->relationship('fund')
+                    ->searchable(['name', 'ref'])
+                    ->preload()
+                    ->getOptionLabelFromRecordUsing(fn(Fund $fund) => $fund->ref_and_name),
                 Select::make('location_id')
                     ->label("Localisation")
-                    ->relationship('location', 'name'),
+                    ->relationship('location', 'name')
+                    ->searchable(['name'])
+                    ->preload(),
                 TextInput::make('name')
                     ->label('Nom')
                     ->required(),

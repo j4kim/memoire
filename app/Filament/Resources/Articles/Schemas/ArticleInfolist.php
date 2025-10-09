@@ -18,10 +18,10 @@ class ArticleInfolist
                 TextEntry::make('description'),
                 TextEntry::make('subtitle')
                     ->label("Titre alternatif"),
-                TextEntry::make('fund.name')
+                TextEntry::make('fund.ref_and_name')
                     ->label("Fond")
                     ->url(fn(Article $article) => $article->fundUrl()),
-                TextEntry::make('lot.name')
+                TextEntry::make('lot.ref_and_name')
                     ->label("Lot")
                     ->url(fn(Article $article) => $article->lotUrl()),
                 TextEntry::make('location.name')

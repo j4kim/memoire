@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
+use App\Models\Fund;
+use App\Models\Lot;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -25,16 +27,26 @@ class ArticleForm
                     ->label("Titre alternatif"),
                 Select::make('fund_id')
                     ->label("Fond")
-                    ->relationship('fund', 'name'),
+                    ->relationship('fund')
+                    ->searchable(['name', 'ref'])
+                    ->preload()
+                    ->getOptionLabelFromRecordUsing(fn(Fund $fund) => $fund->ref_and_name),
                 Select::make('lot_id')
                     ->label("Lot")
-                    ->relationship('lot', 'name'),
+                    ->relationship('lot')
+                    ->searchable(['name', 'ref'])
+                    ->preload()
+                    ->getOptionLabelFromRecordUsing(fn(Lot $lot) => $lot->ref_and_name),
                 Select::make('location_id')
                     ->label("Localisation")
-                    ->relationship('location', 'name'),
+                    ->relationship('location', 'name')
+                    ->searchable(['name'])
+                    ->preload(),
                 Select::make('category_id')
                     ->label("Catégorie")
-                    ->relationship('category', 'name'),
+                    ->relationship('category', 'name')
+                    ->searchable(['name'])
+                    ->preload(),
                 DatePicker::make('date')
                     ->label("Date (précise)"),
                 TextInput::make('year_from')

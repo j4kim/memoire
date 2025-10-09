@@ -22,7 +22,9 @@ class FundForm
                     ->required(),
                 Select::make('location_id')
                     ->label('Localisation')
-                    ->relationship('location', 'name'),
+                    ->relationship('location', 'name')
+                    ->searchable(['name'])
+                    ->preload(),
                 Textarea::make('description'),
                 DatePicker::make('creation_date')
                     ->label("Date de création"),

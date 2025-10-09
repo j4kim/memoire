@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -27,5 +28,12 @@ class Fund extends Model
     public function people(): BelongsToMany
     {
         return $this->belongsToMany(Person::class);
+    }
+
+    protected function refAndName(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => "$this->ref - $this->name",
+        );
     }
 }

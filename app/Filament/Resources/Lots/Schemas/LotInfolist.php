@@ -14,9 +14,9 @@ class LotInfolist
         return $schema
             ->components([
                 TextEntry::make('description'),
-                TextEntry::make('fund.name')
+                TextEntry::make('fund.ref_and_name')
                     ->label("Fond")
-                    ->url(fn (Lot $lot): string => FundResource::getUrl('view', ['record' => $lot->fund])),
+                    ->url(fn(Lot $lot): string => FundResource::getUrl('view', ['record' => $lot->fund])),
                 TextEntry::make('location.name')
                     ->label("Localisation"),
                 TextEntry::make('date')
