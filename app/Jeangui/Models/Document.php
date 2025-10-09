@@ -16,6 +16,7 @@ class Document extends Model
             Article::create([
                 'id' => $doc->id,
                 'lot_id' => $doc->id_lot,
+                'category_id' => str($doc->type)->before("\t"),
                 'title' => $doc->titre ?: null,
                 'ref' => $doc->cote,
                 'description' => $doc->description ?: null,
@@ -35,7 +36,6 @@ class Document extends Model
                         'keyword_ids' => $doc->ids_motmatiere,
                         'author_ids' => $doc->ids_auteur,
                         'location_ids' => $doc->ids_lieu,
-                        'category' => $doc->type,
                         'doc_nr' => $doc->num_doc,
                         'old_ref' => $doc->ancienne_cote,
                         'availability' => $doc->accessibilite,

@@ -40,6 +40,7 @@ class JeanguiImport extends Command
             \App\Jeangui\Models\Personne::class,
             \App\Jeangui\Models\Fond::class,
             \App\Jeangui\Models\Lot::class,
+            \App\Jeangui\CategoryImporter::class,
             \App\Jeangui\Models\Document::class,
         ];
 
