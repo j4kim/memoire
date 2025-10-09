@@ -21,7 +21,7 @@ class Article extends Model
             'dimensions' => 'array',
             'techniques' => 'array',
             'geography' => 'array',
-            'legacy' => 'array',
+            'legacy' => 'object',
         ];
     }
 

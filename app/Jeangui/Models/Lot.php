@@ -27,6 +27,12 @@ class Lot extends Model
                 'description' => $lot->description ?: null,
                 'date' => $lot->date ? Carbon::createFromFormat("d.m.Y", $lot->date)->format("Y-m-d") : null,
                 'price' => $lot->prix ?: null,
+                'legacy' => [
+                    'jeangui' => [
+                        'b' => $lot->b,
+                        'type' => $lot->type,
+                    ],
+                ],
             ]);
         }
     }

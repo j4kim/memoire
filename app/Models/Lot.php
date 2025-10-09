@@ -12,6 +12,13 @@ class Lot extends Model
 {
     use BelongsToFund, HasRefAndName;
 
+    protected function casts(): array
+    {
+        return [
+            'legacy' => 'object',
+        ];
+    }
+
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
