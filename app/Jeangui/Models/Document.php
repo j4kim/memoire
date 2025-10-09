@@ -33,7 +33,7 @@ class Document extends Model
                         'life_of_document' => $doc->vie_du_document,
                         'dimensions' => $doc->dimensions,
                         'keyword_ids' => $doc->ids_motmatiere,
-                        'author_ids' => $doc->ids_auteurs,
+                        'author_ids' => $doc->ids_auteur,
                         'location_ids' => $doc->ids_lieu,
                         'category' => $doc->type,
                         'doc_nr' => $doc->num_doc,
