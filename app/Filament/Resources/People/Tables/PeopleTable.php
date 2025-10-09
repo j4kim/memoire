@@ -55,10 +55,7 @@ class PeopleTable
             ->filters([
                 //
             ])
-            ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
