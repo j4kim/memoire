@@ -42,7 +42,7 @@ class ArticleInfolist
                     TextEntry::make('title')->label("Titre")->columnSpan(2),
                     TextEntry::make('description')->columnSpan(2),
                     TextEntry::make('subtitle')->label("Titre alternatif")->columnSpan(2),
-                    TextEntry::make('location.name')->label("Localisation"),
+                    TextEntry::make('locations.name')->label("Lieux"),
                     TextEntry::make('category.name')->label("Catégorie"),
                     TextEntry::make('date_or_year')->label("Date"),
                     TextEntry::make('collation')->numeric(),

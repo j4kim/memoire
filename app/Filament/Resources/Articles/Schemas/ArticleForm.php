@@ -45,9 +45,10 @@ class ArticleForm
                         TextInput::make('subtitle')->label("Titre alternatif"),
 
 
-                        Select::make('location_id')
-                            ->label("Localisation")
-                            ->relationship('location', 'name')
+                        Select::make('locations')
+                            ->label("Lieux")
+                            ->relationship('locations', 'name')
+                            ->multiple()
                             ->searchable(['name'])
                             ->preload(),
                         Select::make('category_id')
