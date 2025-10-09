@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
-use App\Filament\Resources\Funds\FundResource;
-use App\Filament\Resources\Lots\LotResource;
 use App\Models\Article;
+use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -20,10 +19,24 @@ class ArticleInfolist
                     ->label("Titre alternatif"),
                 TextEntry::make('fund.ref_and_name')
                     ->label("Fond")
-                    ->url(fn(Article $article) => $article->fundUrl()),
+                    ->state(false)
+                    ->prefixActions([
+                        Action::make('link')
+                            ->label(fn(Article $article) => $article->fund->ref_and_name)
+                            ->url(fn(Article $article) => $article->fundUrl())
+                            ->link()
+                            ->visible(fn(Article $article) => $article->fund)
+                    ]),
                 TextEntry::make('lot.ref_and_name')
                     ->label("Lot")
-                    ->url(fn(Article $article) => $article->lotUrl()),
+                    ->state(false)
+                    ->prefixActions([
+                        Action::make('link')
+                            ->label(fn(Article $article) => $article->lot->ref_and_name)
+                            ->url(fn(Article $article) => $article->lotUrl())
+                            ->link()
+                            ->visible(fn(Article $article) => $article->lot)
+                    ]),
                 TextEntry::make('location.name')
                     ->label("Localisation"),
                 TextEntry::make('category.name')

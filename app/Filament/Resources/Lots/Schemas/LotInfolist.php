@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Lots\Schemas;
 
-use App\Filament\Resources\Funds\FundResource;
 use App\Models\Lot;
+use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -16,7 +16,14 @@ class LotInfolist
                 TextEntry::make('description'),
                 TextEntry::make('fund.ref_and_name')
                     ->label("Fond")
-                    ->url(fn(Lot $lot): string => FundResource::getUrl('view', ['record' => $lot->fund])),
+                    ->state(false)
+                    ->prefixActions([
+                        Action::make('link')
+                            ->label(fn(Lot $lot) => $lot->fund->ref_and_name)
+                            ->url(fn(Lot $lot) => $lot->fundUrl())
+                            ->link()
+                            ->visible(fn(Lot $lot) => $lot->fund)
+                    ]),
                 TextEntry::make('location.name')
                     ->label("Localisation"),
                 TextEntry::make('date')

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Filament\Resources\Funds\FundResource;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,5 +30,13 @@ class Lot extends Model
         return Attribute::make(
             get: fn() => "$this->ref - $this->name",
         );
+    }
+
+    public function fundUrl(): ?string
+    {
+        if (!$this->fund) {
+            return null;
+        }
+        return FundResource::getUrl('view', ['record' => $this->fund]);
     }
 }
