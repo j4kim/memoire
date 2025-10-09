@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Traits\BelongsToLocation;
+use App\Models\Traits\HasRefAndName;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Fund extends Model
 {
+    use BelongsToLocation, HasRefAndName;
+
     public function lots(): HasMany
     {
         return $this->hasMany(Lot::class);
@@ -20,20 +22,8 @@ class Fund extends Model
         return $this->hasMany(Article::class);
     }
 
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo(Location::class);
-    }
-
     public function people(): BelongsToMany
     {
         return $this->belongsToMany(Person::class);
-    }
-
-    protected function refAndName(): Attribute
-    {
-        return Attribute::make(
-            get: fn() => "$this->ref - $this->name",
-        );
     }
 }
