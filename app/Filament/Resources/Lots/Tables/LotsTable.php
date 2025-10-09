@@ -15,6 +15,10 @@ class LotsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -41,7 +45,7 @@ class LotsTable
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('articles_count')
-                    ->label("Articles")
+                    ->label("Objets")
                     ->counts('articles')
                     ->toggleable(),
             ])
