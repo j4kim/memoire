@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Filament\Resources\Lots\LotResource;
 use App\Models\Traits\BelongsToFund;
-use App\Models\Traits\BelongsToLocation;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Model
 {
-    use BelongsToFund, BelongsToLocation;
+    use BelongsToFund;
 
     protected function casts(): array
     {
@@ -48,6 +47,11 @@ class Article extends Model
     public function attachments(): BelongsToMany
     {
         return $this->belongsToMany(Attachment::class);
+    }
+
+    public function locations(): BelongsToMany
+    {
+        return $this->belongsToMany(Location::class);
     }
 
     public function lotUrl(): ?string

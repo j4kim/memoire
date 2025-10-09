@@ -29,8 +29,8 @@ class JeanguiImport extends Command
         $this->comment("Start jeangui import");
 
         if ($this->option('migrate')) {
-            $this->comment("Run migrate:refresh --step 12");
-            $this->call('migrate:refresh', ['--step' => 12]);
+            $this->comment("Run migrate:refresh --step 13");
+            $this->call('migrate:refresh', ['--step' => 13]);
             $this->info("Database refreshed");
         }
 
@@ -42,6 +42,7 @@ class JeanguiImport extends Command
             \App\Jeangui\Models\Lot::class,
             \App\Jeangui\CategoryImporter::class,
             \App\Jeangui\Models\Document::class,
+            \App\Jeangui\ArticleLocationImporter::class,
         ];
 
         foreach ($models as $model) {

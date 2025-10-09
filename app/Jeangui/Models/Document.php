@@ -35,7 +35,6 @@ class Document extends Model
                         'dimensions' => $doc->dimensions,
                         'keyword_ids' => $doc->ids_motmatiere,
                         'author_ids' => $doc->ids_auteur,
-                        'location_ids' => $doc->ids_lieu,
                         'doc_nr' => $doc->num_doc,
                         'old_ref' => $doc->ancienne_cote,
                         'availability' => $doc->accessibilite,
