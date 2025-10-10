@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\People\Tables;
 
+use App\Filament\Helpers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -13,9 +14,7 @@ class PeopleTable
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('created_at'),
-                TextColumn::make('updated_at'),
+                ...Helpers::systemColumns(),
                 TextColumn::make('first_name')->label("Prénom")->searchable(),
                 TextColumn::make('last_name')->label("Nom")->searchable(),
                 TextColumn::make('birth_year')->label("Naissance")->numeric()->sortable()->toggleable(isToggledHiddenByDefault: true),

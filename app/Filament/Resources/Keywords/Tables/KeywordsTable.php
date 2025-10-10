@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Keywords\Tables;
 
+use App\Filament\Helpers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -13,9 +14,7 @@ class KeywordsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('created_at'),
-                TextColumn::make('updated_at'),
+                ...Helpers::systemColumns(),
                 TextColumn::make('fr')
                     ->searchable(),
                 TextColumn::make('de')

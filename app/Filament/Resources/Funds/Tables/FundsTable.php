@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Funds\Tables;
 
+use App\Filament\Helpers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -13,9 +14,7 @@ class FundsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('created_at'),
-                TextColumn::make('updated_at'),
+                ...Helpers::systemColumns(),
                 TextColumn::make('ref'),
                 TextColumn::make('name'),
                 TextColumn::make('lots_count')

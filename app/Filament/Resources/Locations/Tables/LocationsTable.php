@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Locations\Tables;
 
+use App\Filament\Helpers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -15,9 +16,7 @@ class LocationsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('created_at'),
-                TextColumn::make('updated_at'),
+                ...Helpers::systemColumns(),
                 TextColumn::make('name'),
             ])
             ->filters([

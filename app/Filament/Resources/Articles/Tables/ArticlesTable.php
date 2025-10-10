@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Articles\Tables;
 
+use App\Filament\Helpers;
 use App\Filament\Resources\Lots\RelationManagers\ArticlesRelationManager;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -15,9 +16,7 @@ class ArticlesTable
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('created_at'),
-                TextColumn::make('updated_at'),
+                ...Helpers::systemColumns(),
                 TextColumn::make('fund.name')
                     ->label('Fond')
                     ->sortable()
