@@ -14,10 +14,10 @@ class FundInfolist
         return $schema
             ->components([
                 Section::make('Classification')->schema([
-                    TextEntry::make('ref')->label('Cote')->columnSpan(2),
-                    TextEntry::make('name')->columnSpan(2),
+                    TextEntry::make('ref')->label('Cote'),
+                    TextEntry::make('name'),
 
-                    TextEntry::make('description')->columnSpan(4),
+                    TextEntry::make('description'),
 
                     TextEntry::make('location.name')
                         ->label('Lieu')
@@ -28,7 +28,7 @@ class FundInfolist
                     TextEntry::make('year_from')
                         ->label("Années")
                         ->formatStateUsing(fn(Fund $record) => "de $record->year_from à $record->year_to"),
-                ])->columns(4),
+                ])->columns(2),
 
                 Section::make('Système')->schema([
                     TextEntry::make('id')->label("ID"),
