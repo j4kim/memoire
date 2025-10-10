@@ -18,6 +18,11 @@ class KeywordsTable
                 TextColumn::make('fr')->searchable()->sortable(),
                 TextColumn::make('de')->searchable()->sortable(),
                 TextColumn::make('en')->searchable()->sortable(),
+                TextColumn::make('articles_count')
+                    ->label("Objets")
+                    ->counts('articles')
+                    ->sortable()
+                    ->toggleable(),
             ])
             ->filters([
                 //
