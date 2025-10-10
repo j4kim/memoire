@@ -33,8 +33,6 @@ class Document extends Model
                         'storage' => $doc->rangement,
                         'life_of_document' => $doc->vie_du_document,
                         'dimensions' => $doc->dimensions,
-                        'keyword_ids' => $doc->ids_motmatiere,
-                        'author_ids' => $doc->ids_auteur,
                         'doc_nr' => $doc->num_doc,
                         'old_ref' => $doc->ancienne_cote,
                         'availability' => $doc->accessibilite,
