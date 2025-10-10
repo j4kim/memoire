@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 class LotsRelationManager extends RelationManager
 {
     protected static string $relationship = 'lots';
+    protected static ?string $title = 'Lots dans ce fond';
 
     protected static ?string $relatedResource = LotResource::class;
 
