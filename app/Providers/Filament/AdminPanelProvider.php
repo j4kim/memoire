@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Helpers;
 use Filament\Forms\Components\Field;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -61,16 +62,10 @@ class AdminPanelProvider extends PanelProvider
 
     public function boot(): void
     {
-        TextColumn::configureUsing(function (TextColumn $column): void {
-            $column->label(__($column->getName()));
-        });
+        TextColumn::configureUsing(fn(TextColumn $column) => Helpers::setLabel($column));
 
-        TextEntry::configureUsing(function (TextEntry $entry): void {
-            $entry->label(__($entry->getName()));
-        });
+        TextEntry::configureUsing(fn(TextEntry $entry) => Helpers::setLabel($entry));
 
-        Field::configureUsing(function (Field $input): void {
-            $input->label(__($input->getName()));
-        });
+        Field::configureUsing(fn(Field $input) => Helpers::setLabel($input));
     }
 }

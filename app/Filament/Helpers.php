@@ -2,6 +2,7 @@
 
 namespace App\Filament;
 
+use Filament\Forms\Components\Field;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Tables\Columns\TextColumn;
@@ -44,5 +45,14 @@ class Helpers
             ->sortable()
             ->toggleable()
             ->searchable();
+    }
+
+    public static function setLabel(TextColumn|TextEntry|Field $component): void
+    {
+        $name = $component->getName();
+        $tr = __($name);
+        if ($tr != $name) {
+            $component->label($tr);
+        }
     }
 }
