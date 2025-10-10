@@ -48,7 +48,7 @@ class ArticleInfolist
                     TextEntry::make('collation')->numeric(),
                     TextEntry::make('state')->label('État')->numeric(),
                     TextEntry::make('language')->label("Langues"),
-                    TextEntry::make('keywords.fr')->label("Mot-matière")->badge()
+                    TextEntry::make('keywords.fr')->label("Mots-matière")->badge()
                 ])->columns(4)->collapsible()->persistCollapsed(),
 
                 Section::make('Système')->schema([
