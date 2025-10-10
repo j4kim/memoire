@@ -2,6 +2,8 @@
 
 namespace App\Filament;
 
+use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 
 class Helpers
@@ -24,5 +26,14 @@ class Helpers
                 ->toggleable(isToggledHiddenByDefault: true)
                 ->label("Modifié le"),
         ];
+    }
+
+    public static function systemSection(): Section
+    {
+        return Section::make('Système')->schema([
+            TextEntry::make('id')->label("ID"),
+            TextEntry::make('created_at')->isoDate('LLL')->label("Date de saisie"),
+            TextEntry::make('updated_at')->isoDate('LLL')->label("Date de modification"),
+        ])->columns(4)->collapsible()->persistCollapsed();
     }
 }

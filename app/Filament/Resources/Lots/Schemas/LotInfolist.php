@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Lots\Schemas;
 
+use App\Filament\Helpers;
 use App\Models\Lot;
 use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
@@ -42,11 +43,7 @@ class LotInfolist
                         ->money('CHF'),
                 ])->columns(2),
 
-                Section::make('Système')->schema([
-                    TextEntry::make('id')->label("ID"),
-                    TextEntry::make('created_at'),
-                    TextEntry::make('updated_at'),
-                ])->columns(4)->collapsible()->persistCollapsed(),
+                Helpers::systemSection(),
             ])->columns(1);
     }
 }

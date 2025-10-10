@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Funds\Schemas;
 
+use App\Filament\Helpers;
 use App\Models\Fund;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -30,11 +31,7 @@ class FundInfolist
                         ->formatStateUsing(fn(Fund $record) => "de $record->year_from à $record->year_to"),
                 ])->columns(2),
 
-                Section::make('Système')->schema([
-                    TextEntry::make('id')->label("ID"),
-                    TextEntry::make('created_at'),
-                    TextEntry::make('updated_at'),
-                ])->columns(4)->collapsible()->persistCollapsed(),
+                Helpers::systemSection(),
             ])->columns(1);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Keywords\Schemas;
 
+use App\Filament\Helpers;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -18,11 +19,7 @@ class KeywordInfolist
                     TextEntry::make('en'),
                 ])->columns(4),
 
-                Section::make('Système')->schema([
-                    TextEntry::make('id')->label("ID"),
-                    TextEntry::make('created_at'),
-                    TextEntry::make('updated_at'),
-                ])->columns(4)->collapsible()->persistCollapsed(),
+                Helpers::systemSection(),
             ])->columns(1);
     }
 }

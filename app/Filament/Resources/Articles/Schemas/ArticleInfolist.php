@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
+use App\Filament\Helpers;
 use App\Models\Article;
 use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
@@ -51,11 +52,7 @@ class ArticleInfolist
                     TextEntry::make('keywords.fr')->label("Mots-matière")->badge()
                 ])->columns(4)->collapsible()->persistCollapsed(),
 
-                Section::make('Système')->schema([
-                    TextEntry::make('id')->label("ID"),
-                    TextEntry::make('created_at'),
-                    TextEntry::make('updated_at'),
-                ])->columns(4)->collapsible()->persistCollapsed(),
+                Helpers::systemSection(),
             ])->columns(1);
     }
 }

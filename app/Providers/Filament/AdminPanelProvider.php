@@ -75,14 +75,7 @@ class AdminPanelProvider extends PanelProvider
 
         TextEntry::configureUsing(function (TextEntry $entry): void {
             $name = $entry->getName();
-            if (in_array($name, ['created_at', 'updated_at'])) {
-                $entry->isoDate('LLL');
-                if ($name === 'created_at') {
-                    $entry->label("Date de saisie");
-                } else if ($name === 'updated_at') {
-                    $entry->label("Date de modification");
-                }
-            } else if ($name === 'name') {
+            if ($name === 'name') {
                 $entry->label('Nom');
             }
         });
