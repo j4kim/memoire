@@ -39,16 +39,16 @@ class ArticleInfolist
                 ])->columns(2)->collapsible()->persistCollapsed(),
 
                 Section::make('Classification')->schema([
-                    TextEntry::make('ref')->label("Cote")->columnSpan(2),
-                    TextEntry::make('title')->label("Titre")->columnSpan(2),
+                    TextEntry::make('ref')->columnSpan(2),
+                    TextEntry::make('title')->columnSpan(2),
                     TextEntry::make('description')->columnSpan(2),
-                    TextEntry::make('subtitle')->label("Titre alternatif")->columnSpan(2),
+                    TextEntry::make('subtitle')->columnSpan(2),
                     TextEntry::make('locations.name')->label("Lieux"),
                     TextEntry::make('category.name')->label("Catégorie"),
                     TextEntry::make('date_or_year')->label("Date"),
                     TextEntry::make('collation')->numeric(),
-                    TextEntry::make('state')->label('État')->numeric(),
-                    TextEntry::make('language')->label("Langues"),
+                    TextEntry::make('state')->numeric(),
+                    TextEntry::make('language'),
                     TextEntry::make('keywords.fr')->label("Mots-matière")->badge()
                 ])->columns(4)->collapsible()->persistCollapsed(),
 

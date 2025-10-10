@@ -29,12 +29,8 @@ class LotForm
 
                 Section::make('Classification')
                     ->schema([
-                        TextInput::make('ref')
-                            ->label('Cote')
-                            ->required(),
-                        TextInput::make('name')
-                            ->label('Nom')
-                            ->required(),
+                        TextInput::make('ref')->required(),
+                        TextInput::make('name')->required(),
                         Textarea::make('description'),
                         Select::make('location_id')
                             ->label("Lieu")
@@ -43,7 +39,6 @@ class LotForm
                             ->preload(),
                         DatePicker::make('date'),
                         TextInput::make('price')
-                            ->label('Prix')
                             ->numeric()
                             ->prefix('CHF'),
                     ])

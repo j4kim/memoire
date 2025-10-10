@@ -16,8 +16,8 @@ class FundForm
         return $schema
             ->components([
                 Section::make('Classification')->schema([
-                    TextInput::make('ref')->label("Cote")->required(),
-                    TextInput::make('name')->label('Nom')->required(),
+                    TextInput::make('ref')->required(),
+                    TextInput::make('name')->required(),
 
                     Textarea::make('description'),
 
@@ -27,8 +27,7 @@ class FundForm
                         ->searchable(['name'])
                         ->preload(),
 
-                    DatePicker::make('creation_date')
-                        ->label("Date de création"),
+                    DatePicker::make('creation_date'),
 
                     Section::make('Années')->compact()->schema([
                         TextInput::make('year_from')->label("De")->numeric(),

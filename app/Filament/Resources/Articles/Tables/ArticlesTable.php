@@ -33,7 +33,6 @@ class ArticlesTable
                     }),
                 Helpers::refColumn(),
                 TextColumn::make('title')
-                    ->label('Titre')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('category.name')
@@ -48,12 +47,10 @@ class ArticlesTable
                     ->toggleable()
                     ->sortable(),
                 TextColumn::make('state')
-                    ->label('État')
                     ->numeric()
                     ->toggleable()
                     ->sortable(),
                 TextColumn::make('language')
-                    ->label('Langue')
                     ->numeric()
                     ->sortable()
                     ->toggleable(),

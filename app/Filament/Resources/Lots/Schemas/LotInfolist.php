@@ -29,7 +29,7 @@ class LotInfolist
                 ])->columns(2)->collapsible()->persistCollapsed(),
 
                 Section::make('Classification')->schema([
-                    TextEntry::make('ref')->label('Cote'),
+                    TextEntry::make('ref'),
                     TextEntry::make('name'),
 
                     TextEntry::make('description'),
@@ -39,7 +39,6 @@ class LotInfolist
                     TextEntry::make('date')
                         ->isoDate("LL"),
                     TextEntry::make('price')
-                        ->label('Prix')
                         ->money('CHF'),
                 ])->columns(2),
 

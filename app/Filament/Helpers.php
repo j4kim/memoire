@@ -13,26 +13,23 @@ class Helpers
     {
         return [
             TextColumn::make('id')
-                ->label('ID')
                 ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
             TextColumn::make('created_at')
                 ->dateTime("d.m.Y H:i")
                 ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true)
-                ->label("Saisi le"),
+                ->toggleable(isToggledHiddenByDefault: true),
             TextColumn::make('updated_at')
                 ->dateTime("d.m.Y H:i")
                 ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true)
-                ->label("Modifié le"),
+                ->toggleable(isToggledHiddenByDefault: true),
         ];
     }
 
     public static function systemSection(): Section
     {
         return Section::make('Système')->schema([
-            TextEntry::make('id')->label("ID"),
+            TextEntry::make('id'),
             TextEntry::make('created_at')->isoDate('LLL')->label("Date de saisie"),
             TextEntry::make('updated_at')->isoDate('LLL')->label("Date de modification"),
         ])->columns(4)->collapsible()->persistCollapsed();
@@ -41,7 +38,6 @@ class Helpers
     public static function refColumn(): TextColumn
     {
         return TextColumn::make('ref')
-            ->label('Cote')
             ->sortable()
             ->toggleable()
             ->searchable();

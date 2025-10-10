@@ -15,7 +15,7 @@ class FundInfolist
         return $schema
             ->components([
                 Section::make('Classification')->schema([
-                    TextEntry::make('ref')->label('Cote'),
+                    TextEntry::make('ref'),
                     TextEntry::make('name'),
 
                     TextEntry::make('description'),
@@ -24,7 +24,6 @@ class FundInfolist
                         ->label('Lieu')
                         ->numeric(),
                     TextEntry::make('creation_date')
-                        ->label("Date de création")
                         ->isoDate('LL'),
                     TextEntry::make('year_from')
                         ->label("Années")

@@ -39,10 +39,10 @@ class ArticleForm
 
                 Section::make('Classification')
                     ->schema([
-                        TextInput::make('ref')->label("Cote")->required(),
-                        TextInput::make('title')->label("Titre")->required(),
+                        TextInput::make('ref')->required(),
+                        TextInput::make('title')->required(),
                         Textarea::make('description'),
-                        TextInput::make('subtitle')->label("Titre alternatif"),
+                        TextInput::make('subtitle'),
 
                         Select::make('locations')
                             ->label("Lieux")
@@ -71,8 +71,8 @@ class ArticleForm
                             ])->columnSpan(2)->columns(2)->compact(),
 
                         TextInput::make('collation'),
-                        TextInput::make('state')->label("État"),
-                        TextInput::make('language')->label("Langues"),
+                        TextInput::make('state'),
+                        TextInput::make('language'),
 
                         Select::make('keywords')
                             ->label("Mots-smatière")
