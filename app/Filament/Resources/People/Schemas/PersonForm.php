@@ -12,16 +12,16 @@ class PersonForm
     {
         return $schema
             ->components([
-                TextInput::make('first_name'),
-                TextInput::make('last_name'),
-                TextInput::make('birth_year')->numeric(),
-                TextInput::make('death_year')->numeric(),
-                Textarea::make('description')->columnSpanFull(),
-                TextInput::make('address'),
-                TextInput::make('postal_code'),
-                TextInput::make('locality'),
-                TextInput::make('country'),
-                TextInput::make('phone')->tel(),
+                TextInput::make('first_name')->label("Prénom"),
+                TextInput::make('last_name')->label("Nom"),
+                TextInput::make('birth_year')->label("Naissance")->numeric(),
+                TextInput::make('death_year')->label("Décès")->numeric(),
+                Textarea::make('description'),
+                TextInput::make('address')->label("Adresse"),
+                TextInput::make('postal_code')->label("Code postal"),
+                TextInput::make('locality')->label("Localité"),
+                TextInput::make('country')->label("Pays"),
+                TextInput::make('phone')->tel()->label("Téléphone"),
                 TextInput::make('email')->email(),
                 TextInput::make('position'),
             ]);

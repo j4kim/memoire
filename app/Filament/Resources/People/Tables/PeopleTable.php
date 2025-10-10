@@ -16,30 +16,17 @@ class PeopleTable
                 TextColumn::make('id'),
                 TextColumn::make('created_at'),
                 TextColumn::make('updated_at'),
-                TextColumn::make('first_name')
-                    ->searchable(),
-                TextColumn::make('last_name')
-                    ->searchable(),
-                TextColumn::make('birth_year')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('death_year')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('postal_code')
-                    ->searchable(),
-                TextColumn::make('locality')
-                    ->searchable(),
-                TextColumn::make('country')
-                    ->searchable(),
-                TextColumn::make('phone')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->searchable(),
-                TextColumn::make('position')
-                    ->searchable(),
+                TextColumn::make('first_name')->label("Prénom")->searchable(),
+                TextColumn::make('last_name')->label("Nom")->searchable(),
+                TextColumn::make('birth_year')->label("Naissance")->numeric()->sortable(),
+                TextColumn::make('death_year')->label("Décès")->numeric()->sortable(),
+                TextColumn::make('address')->label("Adresse"),
+                TextColumn::make('postal_code')->label("Code postal"),
+                TextColumn::make('locality')->label("Localité"),
+                TextColumn::make('country')->label("Pays"),
+                TextColumn::make('phone')->label("Téléphone"),
+                TextColumn::make('email')->searchable(),
+                TextColumn::make('position'),
             ])
             ->filters([
                 //
