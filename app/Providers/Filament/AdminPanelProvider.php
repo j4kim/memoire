@@ -2,7 +2,7 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Field;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -69,7 +69,7 @@ class AdminPanelProvider extends PanelProvider
             $entry->label(__($entry->getName()));
         });
 
-        TextInput::configureUsing(function (TextInput $input): void {
+        Field::configureUsing(function (Field $input): void {
             $input->label(__($input->getName()));
         });
     }
