@@ -14,6 +14,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -67,5 +68,11 @@ class AdminPanelProvider extends PanelProvider
         TextEntry::configureUsing(fn(TextEntry $entry) => Helpers::setLabel($entry));
 
         Field::configureUsing(fn(Field $input) => Helpers::setLabel($input));
+
+        Table::configureUsing(function (Table $table): void {
+            $table
+                ->emptyStateHeading(false)
+                ->emptyStateDescription(false);
+        });
     }
 }
