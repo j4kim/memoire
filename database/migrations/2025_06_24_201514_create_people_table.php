@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('full_name')->virtualAs("trim(concat(coalesce(first_name, ''), ' ', coalesce(last_name, '')))");
             $table->smallInteger('birth_year')->nullable();
             $table->smallInteger('death_year')->nullable();
             $table->text('description')->nullable();
