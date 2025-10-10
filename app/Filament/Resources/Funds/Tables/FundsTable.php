@@ -16,10 +16,11 @@ class FundsTable
             ->columns([
                 ...Helpers::systemColumns(),
                 Helpers::refColumn(),
-                TextColumn::make('name'),
+                TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('lots_count')
                     ->label("Lots")
                     ->counts('lots')
+                    ->sortable()
                     ->toggleable(),
             ])
             ->filters([

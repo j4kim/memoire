@@ -15,8 +15,8 @@ class PeopleTable
         return $table
             ->columns([
                 ...Helpers::systemColumns(),
-                TextColumn::make('first_name')->searchable(),
-                TextColumn::make('last_name')->searchable(),
+                TextColumn::make('first_name')->searchable()->sortable(),
+                TextColumn::make('last_name')->searchable()->sortable(),
                 TextColumn::make('birth_year')->numeric()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('death_year')->numeric()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('address')->toggleable(isToggledHiddenByDefault: true),

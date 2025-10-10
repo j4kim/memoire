@@ -25,14 +25,17 @@ class LotsTable
                         return $livewire instanceof LotsRelationManager;
                     }),
                 Helpers::refColumn(),
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('date')
-                    ->date()
+                    ->isoDate("LL")
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('articles_count')
                     ->label("Objets")
                     ->counts('articles')
+                    ->sortable()
                     ->toggleable(),
             ])
             ->filters([

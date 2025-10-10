@@ -15,12 +15,9 @@ class KeywordsTable
         return $table
             ->columns([
                 ...Helpers::systemColumns(),
-                TextColumn::make('fr')
-                    ->searchable(),
-                TextColumn::make('de')
-                    ->searchable(),
-                TextColumn::make('en')
-                    ->searchable(),
+                TextColumn::make('fr')->searchable()->sortable(),
+                TextColumn::make('de')->searchable()->sortable(),
+                TextColumn::make('en')->searchable()->sortable(),
             ])
             ->filters([
                 //
