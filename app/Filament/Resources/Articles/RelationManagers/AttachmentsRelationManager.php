@@ -12,6 +12,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DetachAction;
 use Filament\Actions\DetachBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -20,6 +21,7 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 
 class AttachmentsRelationManager extends RelationManager
 {
@@ -71,6 +73,11 @@ class AttachmentsRelationManager extends RelationManager
                     }),
             ])
             ->recordActions([
+                ViewAction::make()
+                    ->url(function (Attachment $attachment) {
+                        return Storage::temporaryUrl($attachment->path, now()->addMinutes(30));
+                    })
+                    ->openUrlInNewTab(),
                 EditAction::make(),
                 DetachAction::make(),
                 DeleteAction::make(),
