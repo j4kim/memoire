@@ -78,4 +78,9 @@ class Article extends Model
             }
         );
     }
+
+    public function attach(array $filenames)
+    {
+        dd($filenames);
+    }
 }

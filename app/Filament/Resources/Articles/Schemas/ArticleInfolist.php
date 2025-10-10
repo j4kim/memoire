@@ -6,6 +6,7 @@ use App\Filament\Helpers;
 use App\Filament\Resources\Keywords\KeywordResource;
 use App\Models\Article;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -60,6 +61,19 @@ class ArticleInfolist
                             return $state->fr;
                         }),
                 ])->columns(4)->collapsible()->persistCollapsed(),
+
+                Section::make('Médias')->schema([
+                    Action::make("Ajouter des fichiers")
+                        ->schema([
+                            FileUpload::make('files')
+                                ->label("Fichiers")
+                                ->multiple()
+                                ->preserveFilenames()
+                        ])
+                        ->action(function (array $data, Article $article) {
+                            $article->attach($data['files']);
+                        }),
+                ])->collapsible()->persistCollapsed(),
 
                 Helpers::systemSection(),
             ])->columns(1);
