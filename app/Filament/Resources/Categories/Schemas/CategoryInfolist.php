@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Categories\Schemas;
 
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class CategoryInfolist
@@ -11,9 +12,15 @@ class CategoryInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at'),
-                TextEntry::make('updated_at'),
-                TextEntry::make('name'),
-            ]);
+                Section::make('Classification')->schema([
+                    TextEntry::make('name')
+                ]),
+
+                Section::make('Système')->schema([
+                    TextEntry::make('id')->label("ID"),
+                    TextEntry::make('created_at'),
+                    TextEntry::make('updated_at'),
+                ])->columns(4)->collapsible()->persistCollapsed(),
+            ])->columns(1);
     }
 }
