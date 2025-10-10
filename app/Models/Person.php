@@ -9,7 +9,7 @@ class Person extends Model
 {
     public function funds(): BelongsToMany
     {
-        return $this->belongsToMany(Fund::class);
+        return $this->belongsToMany(Fund::class)->withPivot('role');
     }
 
     public function articles(): BelongsToMany

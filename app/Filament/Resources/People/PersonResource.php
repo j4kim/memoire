@@ -7,6 +7,7 @@ use App\Filament\Resources\People\Pages\EditPerson;
 use App\Filament\Resources\People\Pages\ListPeople;
 use App\Filament\Resources\People\Pages\ViewPerson;
 use App\Filament\Resources\People\RelationManagers\ArticlesRelationManager;
+use App\Filament\Resources\People\RelationManagers\FundsRelationManager;
 use App\Filament\Resources\People\Schemas\PersonForm;
 use App\Filament\Resources\People\Schemas\PersonInfolist;
 use App\Filament\Resources\People\Tables\PeopleTable;
@@ -49,6 +50,7 @@ class PersonResource extends Resource
     {
         return [
             ArticlesRelationManager::class,
+            FundsRelationManager::class,
         ];
     }
 
