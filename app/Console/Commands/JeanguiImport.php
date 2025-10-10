@@ -44,6 +44,7 @@ class JeanguiImport extends Command
             \App\Jeangui\Models\Document::class,
             \App\Jeangui\ArticleLocationImporter::class,
             \App\Jeangui\ArticleKeywordImporter::class,
+            \App\Jeangui\ArticlePersonImporter::class,
         ];
 
         foreach ($models as $model) {
