@@ -15,10 +15,7 @@ class ArticlesTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('id'),
                 TextColumn::make('created_at'),
                 TextColumn::make('updated_at'),
                 TextColumn::make('fund.name')

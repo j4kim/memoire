@@ -62,7 +62,8 @@ class AdminPanelProvider extends PanelProvider
         TextColumn::configureUsing(function (TextColumn $column): void {
             $name = $column->getName();
             if (in_array($name, ['created_at', 'updated_at'])) {
-                $column->dateTime("d.m.Y H:i")
+                $column
+                    ->dateTime("d.m.Y H:i")
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true);
                 if ($name === 'created_at') {
@@ -70,6 +71,11 @@ class AdminPanelProvider extends PanelProvider
                 } else if ($name === 'updated_at') {
                     $column->label("Modification");
                 }
+            } else if ($name === 'id') {
+                $column
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true);
             }
         });
     }

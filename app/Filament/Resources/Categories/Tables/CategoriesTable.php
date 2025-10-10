@@ -15,6 +15,7 @@ class CategoriesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('created_at'),
                 TextColumn::make('updated_at'),
                 TextColumn::make('name')
