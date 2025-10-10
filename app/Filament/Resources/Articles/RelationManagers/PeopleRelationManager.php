@@ -3,11 +3,11 @@
 namespace App\Filament\Resources\Articles\RelationManagers;
 
 use App\Filament\Helpers;
-use Filament\Actions\AssociateAction;
+use Filament\Actions\AttachAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
+use Filament\Actions\DetachAction;
 use Filament\Actions\DetachBulkAction;
-use Filament\Actions\DissociateAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -31,7 +31,10 @@ class PeopleRelationManager extends RelationManager
                 TextColumn::make('role')->label("Rôle"),
             ])
             ->headerActions([
-                AssociateAction::make(),
+                AttachAction::make()->schema(fn(AttachAction $action): array => [
+                    $action->getRecordSelect(),
+                    TextInput::make('role'),
+                ]),
                 CreateAction::make()->schema([
                     TextInput::make('first_name'),
                     TextInput::make('last_name'),
@@ -39,7 +42,7 @@ class PeopleRelationManager extends RelationManager
                 ]),
             ])
             ->recordActions([
-                DissociateAction::make(),
+                DetachAction::make(),
                 ViewAction::make(),
             ])
             ->toolbarActions([
