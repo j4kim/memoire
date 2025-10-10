@@ -72,6 +72,7 @@ class AttachmentsRelationManager extends RelationManager
                         $article->attach($data['file'], $data['description']);
                     }),
             ])
+            ->recordUrl(false)
             ->recordActions([
                 ViewAction::make()
                     ->url(function (Attachment $attachment) {
