@@ -17,7 +17,7 @@ class LocationsTable
         return $table
             ->columns([
                 ...Helpers::systemColumns(),
-                TextColumn::make('name'),
+                TextColumn::make('name')->searchable()->sortable(),
             ])
             ->filters([
                 //
