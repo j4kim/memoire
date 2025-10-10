@@ -3,6 +3,7 @@
 namespace App\Filament;
 
 use Filament\Forms\Components\Field;
+use Filament\Forms\Components\Select;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Tables\Columns\TextColumn;
@@ -50,5 +51,17 @@ class Helpers
         if ($tr != $name) {
             $component->label($tr);
         }
+    }
+
+    public static function roleSelect(): Select
+    {
+        return Select::make('role')
+            ->label("Rôle")
+            ->options([
+                "Propriétaire" => "Propriétaire",
+                "Auteur" => "Auteur",
+                "Traducteur" => "Traducteur",
+            ])
+            ->native(false);
     }
 }

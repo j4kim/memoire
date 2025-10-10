@@ -33,13 +33,13 @@ class ArticlesRelationManager extends RelationManager
             ->headerActions([
                 AttachAction::make()->schema(fn(AttachAction $action): array => [
                     $action->getRecordSelect(),
-                    TextInput::make('role'),
+                    Helpers::roleSelect(),
                 ]),
             ])
             ->recordActions([
                 DetachAction::make(),
                 EditAction::make()->schema([
-                    TextInput::make('role'),
+                    Helpers::roleSelect(),
                 ])->modalWidth(Width::Large),
                 ViewAction::make()->url(function (Article $article) {
                     return ArticleResource::getUrl('view', ['record' => $article]);

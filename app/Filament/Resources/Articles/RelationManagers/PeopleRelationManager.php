@@ -37,18 +37,18 @@ class PeopleRelationManager extends RelationManager
             ->headerActions([
                 AttachAction::make()->schema(fn(AttachAction $action): array => [
                     $action->getRecordSelect(),
-                    TextInput::make('role'),
+                    Helpers::roleSelect(),
                 ]),
                 CreateAction::make()->schema([
                     TextInput::make('first_name'),
                     TextInput::make('last_name'),
-                    TextInput::make('role'),
+                    Helpers::roleSelect(),
                 ])->modalWidth(Width::Large),
             ])
             ->recordActions([
                 DetachAction::make(),
                 EditAction::make()->schema([
-                    TextInput::make('role'),
+                    Helpers::roleSelect(),
                 ])->modalWidth(Width::Large),
                 ViewAction::make()->url(function (Person $person) {
                     return PersonResource::getUrl('view', ['record' => $person]);
