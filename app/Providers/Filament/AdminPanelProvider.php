@@ -62,13 +62,7 @@ class AdminPanelProvider extends PanelProvider
     {
         TextColumn::configureUsing(function (TextColumn $column): void {
             $name = $column->getName();
-            if ($name === 'ref') {
-                $column
-                    ->label('Cote')
-                    ->sortable()
-                    ->toggleable()
-                    ->searchable();
-            } else if ($name === 'name') {
+            if ($name === 'name') {
                 $column->label('Nom')->sortable()->searchable();
             }
         });

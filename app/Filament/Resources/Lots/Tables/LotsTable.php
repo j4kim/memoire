@@ -24,7 +24,7 @@ class LotsTable
                     ->hidden(function (Component $livewire) {
                         return $livewire instanceof LotsRelationManager;
                     }),
-                TextColumn::make('ref'),
+                Helpers::refColumn(),
                 TextColumn::make('name'),
                 TextColumn::make('date')
                     ->date()

@@ -15,7 +15,7 @@ class FundsTable
         return $table
             ->columns([
                 ...Helpers::systemColumns(),
-                TextColumn::make('ref'),
+                Helpers::refColumn(),
                 TextColumn::make('name'),
                 TextColumn::make('lots_count')
                     ->label("Lots")

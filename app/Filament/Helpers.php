@@ -36,4 +36,13 @@ class Helpers
             TextEntry::make('updated_at')->isoDate('LLL')->label("Date de modification"),
         ])->columns(4)->collapsible()->persistCollapsed();
     }
+
+    public static function refColumn(): TextColumn
+    {
+        return TextColumn::make('ref')
+            ->label('Cote')
+            ->sortable()
+            ->toggleable()
+            ->searchable();
+    }
 }
