@@ -19,14 +19,8 @@ class LocationsTable
                     ->label('ID')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at'),
+                TextColumn::make('updated_at'),
                 TextColumn::make('name')
                     ->label('Nom')
                     ->searchable(),

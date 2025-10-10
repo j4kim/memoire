@@ -10,6 +10,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -54,5 +55,22 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+    }
+
+    public function boot(): void
+    {
+        TextColumn::configureUsing(function (TextColumn $column): void {
+            $name = $column->getName();
+            if (in_array($name, ['created_at', 'updated_at'])) {
+                $column->dateTime("d.m.Y H:i")
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true);
+                if ($name === 'created_at') {
+                    $column->label("Saisie");
+                } else if ($name === 'updated_at') {
+                    $column->label("Modification");
+                }
+            }
+        });
     }
 }
