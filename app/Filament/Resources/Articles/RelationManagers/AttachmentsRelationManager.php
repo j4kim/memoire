@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Articles\RelationManagers;
 
 use App\Filament\Helpers;
+use App\Filament\Resources\Articles\Pages\EditArticle;
 use App\Models\Article;
 use App\Models\Attachment;
 use Filament\Actions\Action;
@@ -22,6 +23,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Component;
 
 class AttachmentsRelationManager extends RelationManager
 {
@@ -60,6 +62,9 @@ class AttachmentsRelationManager extends RelationManager
             ])
             ->headerActions([
                 Action::make("Ajouter un fichier")
+                    ->visible(function (Component $livewire) {
+                        return $livewire->pageClass === EditArticle::class;
+                    })
                     ->schema([
                         FileUpload::make('file')
                             ->label("Fichier")
