@@ -19,4 +19,9 @@ class Attachment extends Model
     {
         return $this->belongsToMany(Article::class);
     }
+
+    public function isImage(): bool
+    {
+        return str_starts_with($this->mime_type, "image/");
+    }
 }

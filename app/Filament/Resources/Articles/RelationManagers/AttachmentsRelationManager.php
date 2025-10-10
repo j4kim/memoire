@@ -4,10 +4,9 @@ namespace App\Filament\Resources\Articles\RelationManagers;
 
 use App\Filament\Helpers;
 use App\Models\Article;
+use App\Models\Attachment;
 use Filament\Actions\Action;
-use Filament\Actions\AttachAction;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DetachAction;
@@ -18,6 +17,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -43,6 +43,12 @@ class AttachmentsRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 ...Helpers::systemColumns(),
+                ImageColumn::make('preview')
+                    ->label("Aperçu")
+                    ->state(function (Attachment $attachment) {
+                        return $attachment->isImage() ? $attachment->path : null;
+                    })
+                    ->imageSize(80),
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('description')->searchable(),
                 TextColumn::make('mime_type')->label("Type"),
