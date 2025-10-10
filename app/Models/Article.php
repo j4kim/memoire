@@ -31,7 +31,7 @@ class Article extends Model
 
     public function people(): BelongsToMany
     {
-        return $this->belongsToMany(Person::class);
+        return $this->belongsToMany(Person::class)->withPivot('role');
     }
 
     public function keywords(): BelongsToMany
