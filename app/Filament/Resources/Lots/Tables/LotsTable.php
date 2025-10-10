@@ -26,10 +26,7 @@ class LotsTable
                         return $livewire instanceof LotsRelationManager;
                     }),
                 TextColumn::make('ref'),
-                TextColumn::make('name')
-                    ->label('Nom')
-                    ->sortable()
-                    ->searchable(),
+                TextColumn::make('name'),
                 TextColumn::make('date')
                     ->date()
                     ->sortable()

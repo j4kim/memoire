@@ -83,6 +83,8 @@ class AdminPanelProvider extends PanelProvider
                     ->sortable()
                     ->toggleable()
                     ->searchable();
+            } else if ($name === 'name') {
+                $column->label('Nom')->sortable()->searchable();
             }
         });
 
@@ -95,6 +97,8 @@ class AdminPanelProvider extends PanelProvider
                 } else if ($name === 'updated_at') {
                     $entry->label("Date de modification");
                 }
+            } else if ($name === 'name') {
+                $entry->label('Nom');
             }
         });
     }

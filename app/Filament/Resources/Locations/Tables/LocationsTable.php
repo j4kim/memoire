@@ -18,9 +18,7 @@ class LocationsTable
                 TextColumn::make('id'),
                 TextColumn::make('created_at'),
                 TextColumn::make('updated_at'),
-                TextColumn::make('name')
-                    ->label('Nom')
-                    ->searchable(),
+                TextColumn::make('name'),
             ])
             ->filters([
                 //

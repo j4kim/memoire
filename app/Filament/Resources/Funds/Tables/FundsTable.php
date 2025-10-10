@@ -17,10 +17,7 @@ class FundsTable
                 TextColumn::make('created_at'),
                 TextColumn::make('updated_at'),
                 TextColumn::make('ref'),
-                TextColumn::make('name')
-                    ->label('Nom')
-                    ->sortable()
-                    ->searchable(),
+                TextColumn::make('name'),
                 TextColumn::make('lots_count')
                     ->label("Lots")
                     ->counts('lots')
