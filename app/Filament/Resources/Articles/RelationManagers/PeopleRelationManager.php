@@ -3,14 +3,18 @@
 namespace App\Filament\Resources\Articles\RelationManagers;
 
 use App\Filament\Helpers;
+use App\Filament\Resources\People\PersonResource;
+use App\Models\Person;
 use Filament\Actions\AttachAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DetachAction;
 use Filament\Actions\DetachBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -39,11 +43,16 @@ class PeopleRelationManager extends RelationManager
                     TextInput::make('first_name'),
                     TextInput::make('last_name'),
                     TextInput::make('role'),
-                ]),
+                ])->modalWidth(Width::Large),
             ])
             ->recordActions([
                 DetachAction::make(),
-                ViewAction::make(),
+                EditAction::make()->schema([
+                    TextInput::make('role'),
+                ])->modalWidth(Width::Large),
+                ViewAction::make()->url(function (Person $person) {
+                    return PersonResource::getUrl('view', ['record' => $person]);
+                }),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
