@@ -6,6 +6,7 @@ use App\Filament\Resources\Articles\Pages\CreateArticle;
 use App\Filament\Resources\Articles\Pages\EditArticle;
 use App\Filament\Resources\Articles\Pages\ListArticles;
 use App\Filament\Resources\Articles\Pages\ViewArticle;
+use App\Filament\Resources\Articles\RelationManagers\AttachmentsRelationManager;
 use App\Filament\Resources\Articles\RelationManagers\PeopleRelationManager;
 use App\Filament\Resources\Articles\Schemas\ArticleForm;
 use App\Filament\Resources\Articles\Schemas\ArticleInfolist;
@@ -49,6 +50,7 @@ class ArticleResource extends Resource
     {
         return [
             PeopleRelationManager::class,
+            AttachmentsRelationManager::class,
         ];
     }
 

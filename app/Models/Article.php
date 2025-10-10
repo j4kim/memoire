@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Article extends Model
 {
@@ -79,8 +80,20 @@ class Article extends Model
         );
     }
 
-    public function attach(array $filenames)
+    public function attach(TemporaryUploadedFile $file, ?string $description)
     {
-        dd($filenames);
+        $path = $file->store();
+        $this->attachments()->create([
+            'name' => $file->getClientOriginalName(),
+            'path' => $path,
+            'mime_type' => $file->getMimeType(),
+            'description' => $description,
+            'metadata' => [
+                'original_name' => $file->getClientOriginalName(),
+                'dimensions' => $file->dimensions(),
+                'size' => $file->getSize(),
+                'original_extension' => $file->getClientOriginalExtension(),
+            ],
+        ]);
     }
 }
