@@ -44,7 +44,6 @@ class ArticleForm
                         Textarea::make('description'),
                         TextInput::make('subtitle')->label("Titre alternatif"),
 
-
                         Select::make('locations')
                             ->label("Lieux")
                             ->relationship('locations', 'name')
@@ -74,6 +73,13 @@ class ArticleForm
                         TextInput::make('collation'),
                         TextInput::make('state')->label("État"),
                         TextInput::make('language')->label("Langues"),
+
+                        Select::make('keywords')
+                            ->label("Mots-smatière")
+                            ->relationship('keywords', 'fr')
+                            ->multiple()
+                            ->searchable(['fr', 'de', 'en'])
+                            ->preload(),
                     ])
                     ->columns(2)
                     ->collapsible()
