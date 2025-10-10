@@ -11,12 +11,8 @@ class CategoryInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                TextEntry::make('created_at'),
+                TextEntry::make('updated_at'),
                 TextEntry::make('name'),
             ]);
     }

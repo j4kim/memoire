@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -76,6 +77,18 @@ class AdminPanelProvider extends PanelProvider
                     ->label('ID')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true);
+            }
+        });
+
+        TextEntry::configureUsing(function (TextEntry $entry): void {
+            $name = $entry->getName();
+            if (in_array($name, ['created_at', 'updated_at'])) {
+                $entry->isoDate('LLL');
+                if ($name === 'created_at') {
+                    $entry->label("Date de saisie");
+                } else if ($name === 'updated_at') {
+                    $entry->label("Date de modification");
+                }
             }
         });
     }

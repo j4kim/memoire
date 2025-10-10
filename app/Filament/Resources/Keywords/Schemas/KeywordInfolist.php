@@ -11,10 +11,8 @@ class KeywordInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                TextEntry::make('created_at'),
+                TextEntry::make('updated_at'),
                 TextEntry::make('fr'),
                 TextEntry::make('de'),
                 TextEntry::make('en'),

@@ -31,12 +31,8 @@ class LotInfolist
                 TextEntry::make('price')
                     ->label('Prix')
                     ->money('CHF'),
-                TextEntry::make('created_at')
-                    ->label("Entré le")
-                    ->isoDate('LLL'),
-                TextEntry::make('updated_at')
-                    ->label("Modifié le")
-                    ->isoDate('LLL'),
+                TextEntry::make('created_at'),
+                TextEntry::make('updated_at'),
             ]);
     }
 }

@@ -53,8 +53,8 @@ class ArticleInfolist
 
                 Section::make('Système')->schema([
                     TextEntry::make('id')->label("ID"),
-                    TextEntry::make('created_at')->label("Entré le")->isoDate('LLL'),
-                    TextEntry::make('updated_at')->label("Modifié le")->isoDate('LLL'),
+                    TextEntry::make('created_at'),
+                    TextEntry::make('updated_at'),
                 ])->columns(4)->collapsible()->persistCollapsed(),
             ])->columns(1);
     }

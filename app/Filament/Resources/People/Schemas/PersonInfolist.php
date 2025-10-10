@@ -11,10 +11,8 @@ class PersonInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                TextEntry::make('created_at'),
+                TextEntry::make('updated_at'),
                 TextEntry::make('first_name'),
                 TextEntry::make('last_name'),
                 TextEntry::make('birth_year')
