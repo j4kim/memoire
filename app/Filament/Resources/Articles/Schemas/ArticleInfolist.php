@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Articles\Schemas;
 
 use App\Filament\Helpers;
+use App\Filament\Resources\Keywords\KeywordResource;
 use App\Models\Article;
 use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
@@ -49,7 +50,15 @@ class ArticleInfolist
                     TextEntry::make('collation')->numeric(),
                     TextEntry::make('state')->numeric(),
                     TextEntry::make('language'),
-                    TextEntry::make('keywords.fr')->label("Mots-matière")->badge()
+                    TextEntry::make('keywords')
+                        ->label("Mots-matière")
+                        ->badge()
+                        ->url(function ($state) {
+                            return KeywordResource::getUrl('view', ['record' => $state]);
+                        })
+                        ->formatStateUsing(function ($state) {
+                            return $state->fr;
+                        }),
                 ])->columns(4)->collapsible()->persistCollapsed(),
 
                 Helpers::systemSection(),
