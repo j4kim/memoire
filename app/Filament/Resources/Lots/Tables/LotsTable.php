@@ -25,11 +25,7 @@ class LotsTable
                     ->hidden(function (Component $livewire) {
                         return $livewire instanceof LotsRelationManager;
                     }),
-                TextColumn::make('ref')
-                    ->label('Cote')
-                    ->sortable()
-                    ->searchable()
-                    ->toggleable(),
+                TextColumn::make('ref'),
                 TextColumn::make('name')
                     ->label('Nom')
                     ->sortable()

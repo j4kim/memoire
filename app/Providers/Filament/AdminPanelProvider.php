@@ -77,6 +77,12 @@ class AdminPanelProvider extends PanelProvider
                     ->label('ID')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true);
+            } else if ($name === 'ref') {
+                $column
+                    ->label('Cote')
+                    ->sortable()
+                    ->toggleable()
+                    ->searchable();
             }
         });
 

@@ -32,11 +32,7 @@ class ArticlesTable
                     ->hidden(function (Component $livewire) {
                         return $livewire instanceof ArticlesRelationManager;
                     }),
-                TextColumn::make('ref')
-                    ->label('Cote')
-                    ->sortable()
-                    ->toggleable()
-                    ->searchable(),
+                TextColumn::make('ref'),
                 TextColumn::make('title')
                     ->label('Titre')
                     ->sortable()

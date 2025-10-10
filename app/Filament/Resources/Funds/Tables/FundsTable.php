@@ -16,10 +16,7 @@ class FundsTable
                 TextColumn::make('id'),
                 TextColumn::make('created_at'),
                 TextColumn::make('updated_at'),
-                TextColumn::make('ref')
-                    ->label('Cote')
-                    ->sortable()
-                    ->searchable(),
+                TextColumn::make('ref'),
                 TextColumn::make('name')
                     ->label('Nom')
                     ->sortable()
