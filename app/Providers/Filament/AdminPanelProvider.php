@@ -61,17 +61,11 @@ class AdminPanelProvider extends PanelProvider
     public function boot(): void
     {
         TextColumn::configureUsing(function (TextColumn $column): void {
-            $name = $column->getName();
-            if ($name === 'name') {
-                $column->label('Nom')->sortable()->searchable();
-            }
+            $column->label(__($column->getName()));
         });
 
         TextEntry::configureUsing(function (TextEntry $entry): void {
-            $name = $entry->getName();
-            if ($name === 'name') {
-                $entry->label('Nom');
-            }
+            $entry->label(__($entry->getName()));
         });
     }
 }
