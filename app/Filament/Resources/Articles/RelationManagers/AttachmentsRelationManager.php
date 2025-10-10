@@ -80,6 +80,7 @@ class AttachmentsRelationManager extends RelationManager
             ->recordUrl(false)
             ->recordActions([
                 ViewAction::make()
+                    ->label("Ouvrir")
                     ->url(function (Attachment $attachment) {
                         return Storage::temporaryUrl($attachment->path, now()->addMinutes(30));
                     })
