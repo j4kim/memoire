@@ -43,6 +43,11 @@ class Attachment extends Model
         return Storage::temporaryUrl($this->path, now()->addMinutes(30));
     }
 
+    public function thumbnailUrl(): string
+    {
+        return Storage::temporaryUrl($this->thumbnail_path, now()->addMinutes(30));
+    }
+
     public function createThumbnail()
     {
         if (!$this->isImage()) {

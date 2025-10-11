@@ -3,13 +3,12 @@
     if (!$illustration) {
         return;
     }
-    $url = $illustration->url();
 @endphp
 
 <div style="display: flex; justify-content: center">
-    <a href="{{ $url }}" target="_blank">
+    <a href="{{ $illustration->url() }}" target="_blank">
         <img
-            src="{{ $url }}"
+            src="{{ $illustration->thumbnailUrl() }}"
             class="fi-sc-image"
             style="height: 14rem"
         />

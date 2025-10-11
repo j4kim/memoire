@@ -47,13 +47,8 @@ class AttachmentsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
+                ImageColumn::make('thumbnail_path')->label("Aperçu"),
                 ...Helpers::systemColumns(),
-                ImageColumn::make('preview')
-                    ->label("Aperçu")
-                    ->state(function (Attachment $attachment) {
-                        return $attachment->isImage() ? $attachment->path : null;
-                    })
-                    ->imageSize(80),
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('description')->searchable(),
                 TextColumn::make('mime_type')->label("Type"),

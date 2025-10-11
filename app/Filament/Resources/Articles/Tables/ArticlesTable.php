@@ -17,7 +17,7 @@ class ArticlesTable
     {
         return $table
             ->columns([
-                ImageColumn::make('illustrations.path')
+                ImageColumn::make('illustrations.thumbnail_path')
                     ->label("")
                     ->square(),
                 ...Helpers::systemColumns(),
