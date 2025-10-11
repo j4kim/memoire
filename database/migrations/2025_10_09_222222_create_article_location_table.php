@@ -12,8 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('article_location', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
             $table->foreignId('article_id')->constrained()->cascadeOnDelete();
             $table->foreignId('location_id')->constrained()->cascadeOnDelete();
             $table->unique(['article_id', 'location_id']);
