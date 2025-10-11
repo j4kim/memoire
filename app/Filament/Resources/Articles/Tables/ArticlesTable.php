@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\Articles\Tables;
 
+use App\Filament\Helpers;
+use App\Filament\Resources\Lots\RelationManagers\ArticlesRelationManager;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Livewire\Component;
 
 class ArticlesTable
 {
@@ -15,29 +17,26 @@ class ArticlesTable
     {
         return $table
             ->columns([
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                ImageColumn::make('illustrations.thumbnail_path')
+                    ->label("")
+                    ->square(),
+                ...Helpers::systemColumns(),
                 TextColumn::make('fund.name')
                     ->label('Fond')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->hidden(function (Component $livewire) {
+                        return $livewire instanceof ArticlesRelationManager;
+                    }),
                 TextColumn::make('lot.name')
                     ->label('Lot')
                     ->sortable()
-                    ->toggleable(),
-                TextColumn::make('ref')
-                    ->label('Cote')
-                    ->sortable()
                     ->toggleable()
-                    ->searchable(),
+                    ->hidden(function (Component $livewire) {
+                        return $livewire instanceof ArticlesRelationManager;
+                    }),
+                Helpers::refColumn(),
                 TextColumn::make('title')
-                    ->label('Titre')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('category.name')
@@ -45,20 +44,17 @@ class ArticlesTable
                     ->numeric()
                     ->sortable()
                     ->toggleable(),
-                TextColumn::make('date')
-                    ->date("d.m.Y")
-                    ->sortable(),
+                TextColumn::make('date_or_year')
+                    ->label("Date"),
                 TextColumn::make('collation')
                     ->numeric()
                     ->toggleable()
                     ->sortable(),
                 TextColumn::make('state')
-                    ->label('État')
                     ->numeric()
                     ->toggleable()
                     ->sortable(),
                 TextColumn::make('language')
-                    ->label('Langue')
                     ->numeric()
                     ->sortable()
                     ->toggleable(),
@@ -66,10 +62,7 @@ class ArticlesTable
             ->filters([
                 //
             ])
-            ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\People\Tables;
 
+use App\Filament\Helpers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,46 +14,33 @@ class PeopleTable
     {
         return $table
             ->columns([
-                TextColumn::make('created_at')
-                    ->dateTime()
+                ...Helpers::systemColumns(),
+                TextColumn::make('first_name')->searchable()->sortable(),
+                TextColumn::make('last_name')->searchable()->sortable(),
+                TextColumn::make('birth_year')->numeric()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('death_year')->numeric()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('address')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('postal_code')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('locality')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('country')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('phone')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('email')->searchable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('position')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('articles_count')
+                    ->label("Objets")
+                    ->counts('articles')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->toggleable(),
+                TextColumn::make('funds_count')
+                    ->label("Fonds")
+                    ->counts('funds')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('first_name')
-                    ->searchable(),
-                TextColumn::make('last_name')
-                    ->searchable(),
-                TextColumn::make('birth_year')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('death_year')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('postal_code')
-                    ->searchable(),
-                TextColumn::make('locality')
-                    ->searchable(),
-                TextColumn::make('country')
-                    ->searchable(),
-                TextColumn::make('phone')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->searchable(),
-                TextColumn::make('position')
-                    ->searchable(),
+                    ->toggleable(),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

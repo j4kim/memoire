@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\Keywords\Tables;
 
+use App\Filament\Helpers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,28 +14,20 @@ class KeywordsTable
     {
         return $table
             ->columns([
-                TextColumn::make('created_at')
-                    ->dateTime()
+                ...Helpers::systemColumns(),
+                TextColumn::make('fr')->searchable()->sortable(),
+                TextColumn::make('de')->searchable()->sortable(),
+                TextColumn::make('en')->searchable()->sortable(),
+                TextColumn::make('articles_count')
+                    ->label("Objets")
+                    ->counts('articles')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('fr')
-                    ->searchable(),
-                TextColumn::make('de')
-                    ->searchable(),
-                TextColumn::make('en')
-                    ->searchable(),
+                    ->toggleable(),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

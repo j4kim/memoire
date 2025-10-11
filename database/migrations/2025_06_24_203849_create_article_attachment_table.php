@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('article_attachment', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
             $table->foreignId('article_id')->constrained()->cascadeOnDelete();
             $table->foreignId('attachment_id')->constrained()->cascadeOnDelete();
             $table->unique(['article_id', 'attachment_id']);
+            $table->boolean('illustrates')->nullable();
         });
     }
 

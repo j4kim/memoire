@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Traits\BelongsToFund;
+use App\Models\Traits\HasRefAndName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Lot extends Model
 {
-    public function fund(): BelongsTo
+    use BelongsToFund, HasRefAndName;
+
+    protected function casts(): array
     {
-        return $this->belongsTo(Fund::class);
+        return [
+            'legacy' => 'object',
+        ];
     }
 
     public function articles(): HasMany

@@ -19,7 +19,7 @@ class JeanguiImport extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Import data from Jeangui database';
 
     /**
      * Execute the console command.
@@ -27,20 +27,24 @@ class JeanguiImport extends Command
     public function handle()
     {
         $this->comment("Start jeangui import");
-    
+
         if ($this->option('migrate')) {
-            $this->comment("Run migrate:refresh --step 12");
-            $this->call('migrate:refresh', ['--step' => 12]);
+            $this->comment("Run migrate:refresh --step 13");
+            $this->call('migrate:refresh', ['--step' => 13]);
             $this->info("Database refreshed");
         }
-        
+
         $models = [
             \App\Jeangui\Models\Lieu::class,
             \App\Jeangui\Models\Motmatiere::class,
             \App\Jeangui\Models\Personne::class,
             \App\Jeangui\Models\Fond::class,
             \App\Jeangui\Models\Lot::class,
+            \App\Jeangui\CategoryImporter::class,
             \App\Jeangui\Models\Document::class,
+            \App\Jeangui\ArticleLocationImporter::class,
+            \App\Jeangui\ArticleKeywordImporter::class,
+            \App\Jeangui\ArticlePersonImporter::class,
         ];
 
         foreach ($models as $model) {

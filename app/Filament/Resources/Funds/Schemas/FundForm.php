@@ -6,6 +6,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class FundForm
@@ -14,24 +15,26 @@ class FundForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->label('Nom')
-                    ->required(),
-                TextInput::make('ref')
-                    ->label("Cote")
-                    ->required(),
-                Select::make('location_id')
-                    ->label('Localisation')
-                    ->relationship('location', 'name'),
-                Textarea::make('description'),
-                DatePicker::make('creation_date')
-                    ->label("Date de création"),
-                TextInput::make('year_from')
-                    ->label("Années, de")
-                    ->numeric(),
-                TextInput::make('year_to')
-                    ->label("Années, à")
-                    ->numeric(),
-            ]);
+                Section::make('Classification')->schema([
+                    TextInput::make('ref')->required(),
+                    TextInput::make('name')->required(),
+
+                    Textarea::make('description'),
+
+                    Select::make('location_id')
+                        ->label('Lieu')
+                        ->relationship('location', 'name')
+                        ->searchable(['name'])
+                        ->preload(),
+
+                    DatePicker::make('creation_date'),
+
+                    Section::make('Années')->compact()->schema([
+                        TextInput::make('year_from')->label("De")->numeric(),
+                        TextInput::make('year_to')->label("À")->numeric(),
+                    ])->columns(2),
+                ])->columns(2),
+
+            ])->columns(1);
     }
 }

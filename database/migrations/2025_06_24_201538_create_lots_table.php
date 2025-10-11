@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->date('date')->nullable();
             $table->integer('price')->nullable();
+            $table->json('legacy')->nullable();
         });
     }
 

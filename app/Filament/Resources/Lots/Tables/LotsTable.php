@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources\Lots\Tables;
 
+use App\Filament\Helpers;
+use App\Filament\Resources\Funds\RelationManagers\LotsRelationManager;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Livewire\Component;
 
 class LotsTable
 {
@@ -15,37 +16,32 @@ class LotsTable
     {
         return $table
             ->columns([
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                ...Helpers::systemColumns(),
                 TextColumn::make('fund.name')
                     ->label('Fond')
                     ->sortable()
-                    ->toggleable(),
-                TextColumn::make('ref')
-                    ->label('Cote')
-                    ->sortable()
-                    ->searchable()
-                    ->toggleable(),
+                    ->toggleable()
+                    ->hidden(function (Component $livewire) {
+                        return $livewire instanceof LotsRelationManager;
+                    }),
+                Helpers::refColumn(),
                 TextColumn::make('name')
-                    ->label('Nom')
-                    ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('date')
-                    ->date()
+                    ->isoDate("LL")
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('articles_count')
+                    ->label("Objets")
+                    ->counts('articles')
                     ->sortable()
                     ->toggleable(),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

@@ -1,0 +1,22 @@
+{
+    "name": "Nom",
+    "ref": "Cote",
+    "creation_date": "Date de création",
+    "created_at": "Saisi le",
+    "updated_at": "Modifié le",
+    "id": "ID",
+    "price": "Prix",
+    "title": "Titre",
+    "state": "État",
+    "language": "Langue",
+    "subtitle": "Titre alternatif",
+    "first_name": "Prénom",
+    "last_name": "Nom",
+    "birth_year": "Naissance",
+    "death_year": "Décès",
+    "address": "Adresse",
+    "postal_code": "Code postal",
+    "locality": "Localité",
+    "country": "Pays",
+    "phone": "Téléphone"
+}

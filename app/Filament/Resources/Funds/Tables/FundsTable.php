@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\Funds\Tables;
 
+use App\Filament\Helpers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,28 +14,19 @@ class FundsTable
     {
         return $table
             ->columns([
-                TextColumn::make('created_at')
-                    ->dateTime()
+                ...Helpers::systemColumns(),
+                Helpers::refColumn(),
+                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('lots_count')
+                    ->label("Lots")
+                    ->counts('lots')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('ref')
-                    ->label('Cote')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('name')
-                    ->label('Nom')
-                    ->sortable()
-                    ->searchable(),
+                    ->toggleable(),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
-            ])
+            ->recordActions([])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
