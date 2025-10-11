@@ -93,7 +93,7 @@ class Article extends Model
     public function attach(TemporaryUploadedFile $file, ?string $description)
     {
         $path = $file->store();
-        $this->attachments()->create([
+        $attachment = Attachment::create([
             'name' => $file->getClientOriginalName(),
             'path' => $path,
             'mime_type' => $file->getMimeType(),
@@ -105,5 +105,10 @@ class Article extends Model
                 'original_extension' => $file->getClientOriginalExtension(),
             ],
         ]);
+        $illustrates = false;
+        if ($this->illustrations()->doesntExist() && $attachment->isImage()) {
+            $illustrates = true;
+        }
+        $this->attachments()->attach($attachment, ['illustrates' => $illustrates]);
     }
 }
