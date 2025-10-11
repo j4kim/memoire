@@ -10,7 +10,6 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Image;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Support\Enums\Alignment;
 
 class ArticleInfolist
 {
@@ -24,7 +23,7 @@ class ArticleInfolist
                 )
                     ->visible(fn(Article $article) => $article->getIllustration()?->url())
                     ->imageHeight('14rem')
-                    ->alignment(Alignment::Center),
+                    ->alignCenter(),
 
                 Section::make('Logistique')->schema([
                     TextEntry::make('fund.ref_and_name')
