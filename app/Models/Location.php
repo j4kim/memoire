@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Location extends Model
@@ -17,8 +18,8 @@ class Location extends Model
         return $this->hasMany(Lot::class);
     }
 
-    public function articles(): HasMany
+    public function articles(): BelongsToMany
     {
-        return $this->hasMany(Article::class);
+        return $this->belongsToMany(Article::class);
     }
 }
