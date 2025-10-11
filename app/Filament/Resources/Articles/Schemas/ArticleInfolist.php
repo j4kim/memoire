@@ -7,8 +7,8 @@ use App\Filament\Resources\Keywords\KeywordResource;
 use App\Models\Article;
 use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Components\Image;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 
 class ArticleInfolist
@@ -17,13 +17,7 @@ class ArticleInfolist
     {
         return $schema
             ->components([
-                Image::make(
-                    url: fn(Article $article) => $article->getIllustration()?->url(),
-                    alt: "Image d'illustration"
-                )
-                    ->visible(fn(Article $article) => $article->getIllustration()?->url())
-                    ->imageHeight('14rem')
-                    ->alignCenter(),
+                View::make('filament.article-illustration'),
 
                 Section::make('Logistique')->schema([
                     TextEntry::make('fund.ref_and_name')
