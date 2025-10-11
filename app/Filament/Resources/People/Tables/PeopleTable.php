@@ -26,6 +26,16 @@ class PeopleTable
                 TextColumn::make('phone')->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('email')->searchable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('position')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('articles_count')
+                    ->label("Objets")
+                    ->counts('articles')
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('funds_count')
+                    ->label("Fonds")
+                    ->counts('funds')
+                    ->sortable()
+                    ->toggleable(),
             ])
             ->filters([
                 //
