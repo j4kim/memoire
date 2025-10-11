@@ -6,6 +6,7 @@ use App\Filament\Helpers;
 use App\Filament\Resources\Lots\RelationManagers\ArticlesRelationManager;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Component;
@@ -16,6 +17,9 @@ class ArticlesTable
     {
         return $table
             ->columns([
+                ImageColumn::make('illustrations.path')
+                    ->label("")
+                    ->square(),
                 ...Helpers::systemColumns(),
                 TextColumn::make('fund.name')
                     ->label('Fond')
