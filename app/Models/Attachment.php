@@ -17,7 +17,7 @@ class Attachment extends Model
 
     public function articles(): BelongsToMany
     {
-        return $this->belongsToMany(Article::class);
+        return $this->belongsToMany(Article::class)->withPivot('illustrates');
     }
 
     public function isImage(): bool

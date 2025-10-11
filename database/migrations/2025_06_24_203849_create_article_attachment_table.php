@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('article_id')->constrained()->cascadeOnDelete();
             $table->foreignId('attachment_id')->constrained()->cascadeOnDelete();
             $table->unique(['article_id', 'attachment_id']);
+            $table->boolean('illustrates')->nullable();
         });
     }
 

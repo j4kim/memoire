@@ -47,7 +47,7 @@ class Article extends Model
 
     public function attachments(): BelongsToMany
     {
-        return $this->belongsToMany(Attachment::class);
+        return $this->belongsToMany(Attachment::class)->withPivot('illustrates');
     }
 
     public function locations(): BelongsToMany

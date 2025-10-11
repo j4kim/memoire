@@ -19,9 +19,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
@@ -56,6 +58,20 @@ class AttachmentsRelationManager extends RelationManager
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('description')->searchable(),
                 TextColumn::make('mime_type')->label("Type"),
+                CheckboxColumn::make('illustrates')
+                    ->label("Illustration")
+                    ->disabled(function (Attachment $attachment, Component $livewire) {
+                        if ($livewire->pageClass !== EditArticle::class) {
+                            return true;
+                        }
+                        return !$attachment->isImage();
+                    })
+                    ->beforeStateUpdated(function (Attachment $attachment, bool $state) {
+                        if (!$state) return;
+                        DB::table('article_attachment')
+                            ->where('article_id', $attachment->pivot_article_id)
+                            ->update(['illustrates' => false]);
+                    }),
             ])
             ->filters([
                 //
