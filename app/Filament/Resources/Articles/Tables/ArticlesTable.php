@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Articles\Tables;
 
 use App\Filament\Helpers;
 use App\Filament\Resources\Lots\RelationManagers\ArticlesRelationManager;
+use App\Models\Article;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\ImageColumn;
@@ -19,7 +20,10 @@ class ArticlesTable
             ->columns([
                 ImageColumn::make('illustrations.path')
                     ->label("")
-                    ->square(),
+                    ->square()
+                    ->url(fn(Article $record) => $record->getIllustration()?->url())
+                    ->openUrlInNewTab()
+                    ->state(fn(Article $record) => $record->getIllustration()?->path),
                 ...Helpers::systemColumns(),
                 TextColumn::make('fund.name')
                     ->label('Fond')
