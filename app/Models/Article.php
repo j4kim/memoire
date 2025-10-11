@@ -50,6 +50,16 @@ class Article extends Model
         return $this->belongsToMany(Attachment::class)->withPivot('illustrates');
     }
 
+    public function illustrations(): BelongsToMany
+    {
+        return $this->attachments()->wherePivot('illustrates', true);
+    }
+
+    public function getIllustration(): ?Attachment
+    {
+        return $this->illustrations->first();
+    }
+
     public function locations(): BelongsToMany
     {
         return $this->belongsToMany(Location::class);

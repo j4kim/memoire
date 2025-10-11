@@ -24,7 +24,6 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class AttachmentsRelationManager extends RelationManager
@@ -98,7 +97,7 @@ class AttachmentsRelationManager extends RelationManager
                 ViewAction::make()
                     ->label("Ouvrir")
                     ->url(function (Attachment $attachment) {
-                        return Storage::temporaryUrl($attachment->path, now()->addMinutes(30));
+                        return $attachment->url();
                     })
                     ->openUrlInNewTab(),
                 EditAction::make(),
