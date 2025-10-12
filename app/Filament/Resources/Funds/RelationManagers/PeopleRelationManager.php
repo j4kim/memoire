@@ -14,6 +14,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Grid;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -40,9 +41,11 @@ class PeopleRelationManager extends RelationManager
                     Helpers::roleSelect(),
                 ]),
                 CreateAction::make()->schema([
-                    TextInput::make('first_name'),
-                    TextInput::make('last_name'),
-                    Helpers::roleSelect(),
+                    Grid::make(2)->components([
+                        TextInput::make('first_name'),
+                        TextInput::make('last_name'),
+                        Helpers::roleSelect()->columnSpanFull(),
+                    ]),
                 ])->modalWidth(Width::Large),
             ])
             ->recordActions([
