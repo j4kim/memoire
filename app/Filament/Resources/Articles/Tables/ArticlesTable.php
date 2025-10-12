@@ -41,23 +41,20 @@ class ArticlesTable
                     ->searchable(),
                 TextColumn::make('category.name')
                     ->label('Catégorie')
-                    ->numeric()
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('date_or_year')
-                    ->label("Date"),
+                    ->label("Date")
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('collation')
-                    ->numeric()
-                    ->toggleable()
-                    ->sortable(),
-                TextColumn::make('state')
-                    ->numeric()
-                    ->toggleable()
-                    ->sortable(),
-                TextColumn::make('language')
-                    ->numeric()
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('state')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('language')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
