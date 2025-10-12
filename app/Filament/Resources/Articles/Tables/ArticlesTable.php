@@ -51,6 +51,10 @@ class ArticlesTable
                     ->badge()
                     ->limitList(2)
                     ->toggleable(),
+                TextColumn::make('locations.name')
+                    ->label("Lieux")
+                    ->limitList(1)
+                    ->toggleable(),
                 TextColumn::make('date_or_year')
                     ->label("Date")
                     ->toggleable(isToggledHiddenByDefault: true),
