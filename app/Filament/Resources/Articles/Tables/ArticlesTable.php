@@ -37,12 +37,20 @@ class ArticlesTable
                     }),
                 Helpers::refColumn(),
                 TextColumn::make('title')
+                    ->wrap()
+                    ->extraCellAttributes(['style' => 'min-width:14rem'])
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('category.name')
                     ->label('Catégorie')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(),
+                TextColumn::make('keywords.fr')
+                    ->wrap()
+                    ->label("Mots-matière")
+                    ->badge()
+                    ->limitList(2)
+                    ->toggleable(),
                 TextColumn::make('date_or_year')
                     ->label("Date")
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -53,6 +61,16 @@ class ArticlesTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('language')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('people_count')
+                    ->label("Personnes")
+                    ->counts('people')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('attachments_count')
+                    ->label("Médias")
+                    ->counts('attachments')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
