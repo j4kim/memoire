@@ -4,25 +4,35 @@ namespace App\Filament\Resources\Articles\Actions;
 
 use App\Filament\Resources\Articles\ArticleResource;
 use App\Models\Article;
-use Filament\Actions\ReplicateAction;
+use Filament\Actions\Action;
+use Filament\Support\Icons\Heroicon;
+use Livewire\Component;
 
-class Replicate extends ReplicateAction
+
+class Replicate extends Action
 {
+    public static function getDefaultName(): ?string
+    {
+        return 'article-replicate';
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->label("Dupliquer");
 
-        $this->excludeAttributes(['id']);
+        $this->icon(Heroicon::Square2Stack);
 
-        $this->mutateRecordDataUsing(function (array $data): array {
-            $data['ref'] = $data['ref'] . ' (copie)';
-            return $data;
-        });
+        $this->requiresConfirmation();
 
-        $this->successRedirectUrl(function (Article $replica) {
-            return ArticleResource::getUrl('edit', ['record' => $replica]);
+        $this->action(function (array $data, Component $livewire, Article $record): void {
+            $replica = $record->replicate();
+            $replica->ref = $replica->ref . ' (copie)';
+            $replica->save();
+            $livewire->redirect(
+                ArticleResource::getUrl('edit', ['record' => $replica])
+            );
         });
     }
 }
