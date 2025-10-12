@@ -26,12 +26,12 @@ class Replicate extends Action
 
         $this->requiresConfirmation();
 
-        $this->action(function (array $data, Component $livewire, Article $record): void {
+        $this->action(function (Component $livewire, Article $record): void {
             $replica = $record->replicate();
-            $replica->ref = $replica->ref . ' (copie)';
+            $replica->ref = $record->getNextRef();
             $replica->save();
             $livewire->redirect(
-                ArticleResource::getUrl('edit', ['record' => $replica])
+                ArticleResource::getUrl('view', ['record' => $replica])
             );
         });
     }
