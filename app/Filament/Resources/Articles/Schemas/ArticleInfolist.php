@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Articles\Schemas;
 
 use App\Filament\Helpers;
+use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Keywords\KeywordResource;
 use App\Models\Article;
 use Filament\Actions\Action;
@@ -48,7 +49,10 @@ class ArticleInfolist
                     TextEntry::make('description')->columnSpan(2),
                     TextEntry::make('subtitle')->columnSpan(2),
                     TextEntry::make('locations.name')->label("Lieux"),
-                    TextEntry::make('category.name')->label("Catégorie"),
+                    TextEntry::make('category')
+                        ->label("Catégorie")
+                        ->url(fn($state) => CategoryResource::getUrl('view', ['record' => $state]))
+                        ->formatStateUsing(fn($state) => $state->name),
                     TextEntry::make('date_or_year')->label("Date"),
                     TextEntry::make('collation')->numeric(),
                     TextEntry::make('state')->numeric(),
