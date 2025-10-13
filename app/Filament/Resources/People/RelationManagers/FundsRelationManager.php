@@ -11,9 +11,11 @@ use Filament\Actions\DetachAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class FundsRelationManager extends RelationManager
 {
@@ -45,5 +47,10 @@ class FundsRelationManager extends RelationManager
                     return FundResource::getUrl('view', ['record' => $fund]);
                 }),
             ]);
+    }
+
+    public static function getTabComponent(Model $ownerRecord, string $pageClass): Tab
+    {
+        return Tab::make('Fonds')->badge($ownerRecord->funds()->count());
     }
 }

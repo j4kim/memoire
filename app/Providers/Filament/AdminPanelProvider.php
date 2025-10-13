@@ -13,8 +13,10 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentView;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -74,5 +76,10 @@ class AdminPanelProvider extends PanelProvider
                 ->emptyStateHeading(false)
                 ->emptyStateDescription(false);
         });
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::SIDEBAR_FOOTER,
+            fn(): string => '<small style="padding: 4px 8px; opacity:0.3">Mémoire v' . config("app.version") . ' - 3SDL</small>',
+        );
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Funds\Schemas;
 
 use App\Filament\Helpers;
+use App\Filament\Resources\Locations\LocationResource;
 use App\Models\Fund;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -20,9 +21,11 @@ class FundInfolist
 
                     TextEntry::make('description'),
 
-                    TextEntry::make('location.name')
-                        ->label('Lieu')
-                        ->numeric(),
+                    TextEntry::make('location')
+                        ->label("Lieu")
+                        ->url(fn($state) => LocationResource::getUrl('view', ['record' => $state]))
+                        ->formatStateUsing(fn($state) => $state->name),
+
                     TextEntry::make('creation_date')
                         ->isoDate('LL'),
                     TextEntry::make('year_from')

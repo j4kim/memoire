@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\Lots\RelationManagers;
+namespace App\Filament\Resources\Funds\RelationManagers;
 
 use App\Filament\Resources\Articles\ArticleResource;
-use App\Filament\Resources\Lots\Pages\EditLot;
+use App\Filament\Resources\Funds\Pages\EditFund;
 use App\Models\Article;
 use Filament\Actions\Action;
 use Filament\Actions\AssociateAction;
@@ -20,7 +20,7 @@ use Livewire\Component;
 class ArticlesRelationManager extends RelationManager
 {
     protected static string $relationship = 'articles';
-    protected static ?string $title = 'Objets dans ce lot';
+    protected static ?string $title = 'Objets dans ce fond';
 
     protected static ?string $relatedResource = ArticleResource::class;
 
@@ -35,19 +35,19 @@ class ArticlesRelationManager extends RelationManager
                         TextInput::make('title')->required(),
                     ])
                     ->modalWidth(Width::Large)
-                    ->modalHeading("Créer un objet dans ce lot")
+                    ->modalHeading("Créer un objet dans ce fond")
                     ->modalSubmitActionLabel('Créer')
                     ->action(function (array $data, Component $livewire) {
-                        /** @var Lot $lot */
-                        $lot = $this->getOwnerRecord();
+                        /** @var Fund $fund */
+                        $fund = $this->getOwnerRecord();
                         $article = Article::create([
                             ...$data,
-                            'lot_id' => $lot->id,
-                            'ref' => Article::getNextRefFromBase($lot->ref),
+                            'fund_id' => $fund->id,
+                            'ref' => Article::getNextRefFromBase($fund->ref),
                         ]);
                         $livewire->redirect(ArticleResource::getUrl('view', ['record' => $article]));
                     })->visible(function (Component $livewire) {
-                        return $livewire->pageClass === EditLot::class;
+                        return $livewire->pageClass === EditFund::class;
                     }),
             ])
             ->recordActions([

@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Lots\Schemas;
 
 use App\Filament\Helpers;
+use App\Filament\Resources\Locations\LocationResource;
 use App\Models\Lot;
-use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -16,16 +16,10 @@ class LotInfolist
         return $schema
             ->components([
                 Section::make('Logistique')->schema([
-                    TextEntry::make('fund.ref_and_name')
+                    TextEntry::make('fund')
                         ->label("Fond")
-                        ->state(false)
-                        ->prefixActions([
-                            Action::make('link')
-                                ->label(fn(Lot $lot) => $lot->fund->ref_and_name)
-                                ->url(fn(Lot $lot) => $lot->fundUrl())
-                                ->link()
-                                ->visible(fn(Lot $lot) => $lot->fund)
-                        ]),
+                        ->url(fn($state, Lot $lot) => $lot->fundUrl())
+                        ->formatStateUsing(fn($state) =>  $state->ref_and_name),
                 ])->columns(2)->collapsible()->persistCollapsed(),
 
                 Section::make('Classification')->schema([
@@ -34,8 +28,11 @@ class LotInfolist
 
                     TextEntry::make('description'),
 
-                    TextEntry::make('location.name')
-                        ->label("Lieu"),
+                    TextEntry::make('location')
+                        ->label("Lieu")
+                        ->url(fn($state) => LocationResource::getUrl('view', ['record' => $state]))
+                        ->formatStateUsing(fn($state) => $state->name),
+
                     TextEntry::make('date')
                         ->isoDate("LL"),
                     TextEntry::make('price')

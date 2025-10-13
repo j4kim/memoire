@@ -37,27 +37,46 @@ class ArticlesTable
                     }),
                 Helpers::refColumn(),
                 TextColumn::make('title')
+                    ->wrap()
+                    ->extraCellAttributes(['style' => 'min-width:14rem'])
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('category.name')
                     ->label('Catégorie')
-                    ->numeric()
                     ->sortable()
+                    ->toggleable(),
+                TextColumn::make('keywords.fr')
+                    ->wrap()
+                    ->label("Mots-matière")
+                    ->badge()
+                    ->limitList(2)
+                    ->toggleable(),
+                TextColumn::make('locations.name')
+                    ->label("Lieux")
+                    ->limitList(1)
                     ->toggleable(),
                 TextColumn::make('date_or_year')
-                    ->label("Date"),
+                    ->label("Date")
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('collation')
-                    ->numeric()
-                    ->toggleable()
-                    ->sortable(),
-                TextColumn::make('state')
-                    ->numeric()
-                    ->toggleable()
-                    ->sortable(),
-                TextColumn::make('language')
-                    ->numeric()
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('state')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('language')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('people_count')
+                    ->label("Personnes")
+                    ->counts('people')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('attachments_count')
+                    ->label("Médias")
+                    ->counts('attachments')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
