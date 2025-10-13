@@ -53,7 +53,9 @@ class Replicate extends Action
                 );
             }
             if ($data['copy_attachments']) {
-                $replica->attachments()->attach($record->attachments()->pluck('id'));
+                $replica->attachments()->attach(
+                    $record->attachments()->pluck("illustrates", "id")->map(fn($illustrates) => ['illustrates' => $illustrates])
+                );
             }
             $livewire->redirect(
                 ArticleResource::getUrl('view', ['record' => $replica])
