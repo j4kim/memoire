@@ -32,6 +32,7 @@ class Replicate extends Action
             TextInput::make('title')->default(fn(Article $record) => $record->title),
             Checkbox::make('copy_locations')->label("Copier les lieux"),
             Checkbox::make('copy_keywords')->label("Copier les mots-matière"),
+            Checkbox::make('copy_people')->label("Copier les personnes"),
         ]);
 
         $this->action(function (array $data, Component $livewire, Article $record): void {
@@ -44,6 +45,11 @@ class Replicate extends Action
             }
             if ($data['copy_keywords']) {
                 $replica->keywords()->attach($record->keywords()->pluck('id'));
+            }
+            if ($data['copy_people']) {
+                $replica->people()->attach(
+                    $record->people()->pluck("role", "id")->map(fn($role) => ['role' => $role])
+                );
             }
             $livewire->redirect(
                 ArticleResource::getUrl('view', ['record' => $replica])
