@@ -18,6 +18,11 @@ class CategoriesTable
             ->columns([
                 ...Helpers::systemColumns(),
                 TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('articles_count')
+                    ->label("Objets")
+                    ->counts('articles')
+                    ->sortable()
+                    ->toggleable(),
             ])
             ->filters([
                 //

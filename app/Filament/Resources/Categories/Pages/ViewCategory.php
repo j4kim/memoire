@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Categories\Pages;
 
 use App\Filament\Resources\Categories\CategoryResource;
+use App\Filament\Resources\Categories\RelationManagers\ArticlesRelationManager;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
@@ -14,6 +15,13 @@ class ViewCategory extends ViewRecord
     {
         return [
             EditAction::make(),
+        ];
+    }
+
+    public function getRelationManagers(): array
+    {
+        return [
+            ArticlesRelationManager::class,
         ];
     }
 }
