@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Articles\Schemas;
 use App\Filament\Helpers;
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Keywords\KeywordResource;
+use App\Filament\Resources\Locations\LocationResource;
 use App\Models\Article;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -36,7 +37,10 @@ class ArticleInfolist
                     TextEntry::make('title')->columnSpan(2),
                     TextEntry::make('description')->columnSpan(2),
                     TextEntry::make('subtitle')->columnSpan(2),
-                    TextEntry::make('locations.name')->label("Lieux"),
+                    TextEntry::make('locations')
+                        ->label("Lieux")
+                        ->url(fn($state) => LocationResource::getUrl('view', ['record' => $state]))
+                        ->formatStateUsing(fn($state) => $state->name),
                     TextEntry::make('category')
                         ->label("Catégorie")
                         ->url(fn($state) => CategoryResource::getUrl('view', ['record' => $state]))
