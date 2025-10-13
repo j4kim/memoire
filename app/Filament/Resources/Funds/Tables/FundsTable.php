@@ -27,6 +27,11 @@ class FundsTable
                     ->counts('articles')
                     ->sortable()
                     ->toggleable(),
+                TextColumn::make('people_count')
+                    ->label("Personnes")
+                    ->counts('people')
+                    ->sortable()
+                    ->toggleable(),
             ])
             ->filters([
                 //
