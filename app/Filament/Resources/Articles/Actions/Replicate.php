@@ -39,6 +39,11 @@ class Replicate extends Action
             $livewire->redirect(
                 ArticleResource::getUrl('view', ['record' => $replica])
             );
+            Notification::make()
+                ->title("Objet dupliqué")
+                ->body("Vous avez été redirigé sur le nouvel objet")
+                ->success()
+                ->send();
         });
     }
 }
