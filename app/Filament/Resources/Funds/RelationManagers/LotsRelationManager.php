@@ -43,7 +43,6 @@ class LotsRelationManager extends RelationManager
                         $lot->save();
                         $lot->ref = "$fund->ref/$lot->id";
                         $lot->save();
-                        $fund->lots()->save($lot);
                         $livewire->redirect(LotResource::getUrl('view', ['record' => $lot]));
                     })->visible(function (Component $livewire) {
                         return $livewire->pageClass === EditFund::class;
