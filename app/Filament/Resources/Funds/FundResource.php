@@ -6,6 +6,7 @@ use App\Filament\Resources\Funds\Pages\CreateFund;
 use App\Filament\Resources\Funds\Pages\EditFund;
 use App\Filament\Resources\Funds\Pages\ListFunds;
 use App\Filament\Resources\Funds\Pages\ViewFund;
+use App\Filament\Resources\Funds\RelationManagers\ArticlesRelationManager;
 use App\Filament\Resources\Funds\RelationManagers\LotsRelationManager;
 use App\Filament\Resources\Funds\RelationManagers\PeopleRelationManager;
 use App\Filament\Resources\Funds\Schemas\FundForm;
@@ -50,6 +51,7 @@ class FundResource extends Resource
     {
         return [
             LotsRelationManager::class,
+            ArticlesRelationManager::class,
             PeopleRelationManager::class,
         ];
     }
