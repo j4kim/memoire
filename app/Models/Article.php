@@ -112,9 +112,8 @@ class Article extends Model
         $this->attachments()->attach($attachment, ['illustrates' => $illustrates]);
     }
 
-    public function getNextRef(): string
+    public static function getNextRefFromBase(string $base): string
     {
-        $base = str($this->ref)->beforeLast('/');
         $greater = Article::where('ref', 'like', "$base/%")
             ->selectRaw(
                 "substring_index(ref, '/', -1) as tail"
@@ -122,7 +121,13 @@ class Article extends Model
                 "convert(substring_index(ref, '/', -1), unsigned) desc"
             )
             ->first();
-        $nextTail = $greater->tail + 1;
+        $nextTail = $greater?->tail + 1;
         return "$base/$nextTail";
+    }
+
+    public function getNextRef(): string
+    {
+        $base = str($this->ref)->beforeLast('/');
+        return Article::getNextRefFromBase($base);
     }
 }
