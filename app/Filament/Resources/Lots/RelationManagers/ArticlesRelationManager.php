@@ -11,13 +11,16 @@ use Filament\Actions\DissociateAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
 class ArticlesRelationManager extends RelationManager
 {
     protected static string $relationship = 'articles';
+    protected static ?string $title = 'Objets dans ce lot';
 
     protected static ?string $relatedResource = ArticleResource::class;
 
@@ -51,5 +54,10 @@ class ArticlesRelationManager extends RelationManager
                 DissociateAction::make(),
                 ViewAction::make(),
             ]);
+    }
+
+    public static function getTabComponent(Model $ownerRecord, string $pageClass): Tab
+    {
+        return Tab::make('Objets')->badge($ownerRecord->articles()->count());
     }
 }

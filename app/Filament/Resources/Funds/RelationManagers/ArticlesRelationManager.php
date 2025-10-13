@@ -4,17 +4,17 @@ namespace App\Filament\Resources\Funds\RelationManagers;
 
 use App\Filament\Resources\Articles\ArticleResource;
 use App\Filament\Resources\Funds\Pages\EditFund;
-use App\Filament\Resources\Lots\LotResource;
 use App\Models\Article;
-use App\Models\Lot;
 use Filament\Actions\Action;
 use Filament\Actions\AssociateAction;
 use Filament\Actions\DissociateAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
 class ArticlesRelationManager extends RelationManager
@@ -54,5 +54,10 @@ class ArticlesRelationManager extends RelationManager
                 DissociateAction::make(),
                 ViewAction::make(),
             ]);
+    }
+
+    public static function getTabComponent(Model $ownerRecord, string $pageClass): Tab
+    {
+        return Tab::make('Objets')->badge($ownerRecord->articles()->count());
     }
 }

@@ -11,8 +11,10 @@ use Filament\Actions\DissociateAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
 class LotsRelationManager extends RelationManager
@@ -52,5 +54,10 @@ class LotsRelationManager extends RelationManager
                 DissociateAction::make(),
                 ViewAction::make(),
             ]);
+    }
+
+    public static function getTabComponent(Model $ownerRecord, string $pageClass): Tab
+    {
+        return Tab::make('Lots')->badge($ownerRecord->lots()->count());
     }
 }
