@@ -7,6 +7,7 @@ use App\Models\Article;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Support\Enums\Width;
 use Filament\Support\Icons\Heroicon;
 use Livewire\Component;
@@ -29,13 +30,17 @@ class Replicate extends Action
 
         $this->schema([
             TextInput::make('title')->default(fn(Article $record) => $record->title),
+            Checkbox::make('copy_locations')->label("Copier les lieux"),
         ]);
 
         $this->action(function (array $data, Component $livewire, Article $record): void {
             $replica = $record->replicate();
-            $replica->fill($data);
+            $replica->title = $data['title'];
             $replica->ref = $record->getNextRef();
             $replica->save();
+            if ($data['copy_locations']) {
+                $replica->locations()->attach($record->locations()->pluck('id'));
+            }
             $livewire->redirect(
                 ArticleResource::getUrl('view', ['record' => $replica])
             );
